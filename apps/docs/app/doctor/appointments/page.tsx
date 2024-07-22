@@ -37,6 +37,7 @@ interface doc{
 
 export default function Sess(){
   const [data,setData]=useState<doc | undefined>()
+  let count=0;
    useEffect(()=>{
     axios.get("http://localhost:3001/api/appointments")
     .then((res)=>{
@@ -64,7 +65,7 @@ export default function Sess(){
 <div className="h-12 w-12 bg-slate-100 rounded-lg flex justify-center items-center"><FaCalendarDays size={30}></FaCalendarDays></div> 
 </div>
 </div>
-<p className="text-3xl font-semibold  my-2">My Bookings</p>
+<p className="text-3xl font-semibold  my-2">My patients</p>
 
 
 
@@ -73,8 +74,10 @@ export default function Sess(){
 </div>
 {data?.appoint?.map((e)=>{ 
   if(e.Status==="Pending"){
+    count=1;
   return <Sessions key={e.id} purpose={e.Purpose} appointmentNum={e.id.toString()} PatientName={data.name} time={e.time} day={e.date} id={e.id}></Sessions>}
 })}
+{count===0? <div className="h-72 w-full flex items-center justify-center"><p>None of your meetings are pending</p></div>: <p></p> }
     </div>
    )
 }

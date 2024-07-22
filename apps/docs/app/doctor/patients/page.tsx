@@ -45,7 +45,7 @@ export default function Sessions(){
         <div className="w-full">
               <div className="flex justify-between items-center h-20 " >
                 <div className="flex justify-around items-center">
-                <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4">Back</button>
+                <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
         <h2 className="text-xl font-bold " >Session</h2>
         </div>
         <div className="flex">
@@ -87,9 +87,9 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
   const [meetlink, setMeettlink]=useState<string | null>()
   useEffect(()=>{
       if(status==="Success"){
-        setColor("green")
+        setColor("indigo")
       }else if(status="Failure"){
-        setColor("red")
+        setColor("gray")
       }
   },[])
 
@@ -155,14 +155,15 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
           console.log("file not found")
       }
    }
+   const str="w-max px-3 rounded-full h-6 bg-gray-200 mx-2"
     return(
         <div className="h-10 mx-3 border  flex items-center *:flex *:items-center *:justify-center *:border-r-2 *:h-full flex justify-between *:w-1/6 ">
           <div className="w-max px-4">{patient}</div>
         <div className="flex justify-around items-center"> 
-        <label className="w-max px-3 rounded-full h-6 bg-indigo-200 mx-2 ">📝Choose
-        <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
+        <label className={`w-max px-3 rounded-full h-6 bg-${color}-200 mx-2 `} >📝Choose
+        <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} disabled={ status==="Failure" || status==="Pending"} />
         </label>
-           <button className="w-max px-3 rounded-full h-6 bg-green-300"  onClick={async()=>{
+           <button className={`w-max px-3 rounded-full h-6 bg-${color}-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
             imageUploader()
             const res= await axios.post("http://localhost:3001/api/patients/prescription",{
                  prescription: download,
@@ -170,8 +171,8 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
               })
               console.log(res)
            }}>send</button></div>
-        <div>  <a className="w-max px-3 rounded-full h-6 bg-indigo-200 " href={report}>view</a></div>
-           <div className="w-max px-3"><input className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}}></input>< button className="w-16 bg-indigo-200 rounded-r-full" onClick={async()=>{
+        <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
+           <div className="w-max px-3"><input className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-${color}-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
             const res= await axios.post("http://localhost:3001/api/patients/meetLink",{
                  meetlink,
                  id
@@ -181,7 +182,7 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
            <div className="w-max px-3">{time}:00 PM</div>
         <div>
           
-           <button className={`w-max px-3 rounded-full h-6 bg-green-300 text-gray-800 `}>{status}</button>
+           <button className={`w-max px-3 rounded-full h-6 bg-${color}-300 text-${color}-800 `}>{status}</button>
                                                      
          </div>
         </div>

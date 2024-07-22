@@ -11,17 +11,17 @@ export default function(){
 
    const [image,setImage]=useState<File | null>()
   const [preview,setPreviewUrl]=useState<string>()
-  const [ download, setDownload]=useState("")
+  const [ download, setDownload]=useState("orange")
 
-  const [address, setAddress]=useState("")
-  const [phoneNumber, setPhone]=useState("")
-  const [age, setAge]=useState("")
-  const [clinic, setClinic]=useState("")
-  const [exp, setExp]=useState("")
-  const [gender, setGender]=useState("")
-  const [spec, setSpec]=useState("")
-  const [offline, setOffline]=useState("")
-  const [online, setOnline]=useState("")
+  const [address, setAddress]=useState("orange")
+  const [phoneNumber, setPhone]=useState("orange")
+  const [age, setAge]=useState("orange")
+  const [clinic, setClinic]=useState("orange")
+  const [exp, setExp]=useState("orange")
+  const [gender, setGender]=useState("orange")
+  const [spec, setSpec]=useState("orange")
+  const [offline, setOffline]=useState("orange")
+  const [online, setOnline]=useState("orange")
   const [days, setDays]=useState<string[]>([])
   const [time, setTime]=useState<string[]>([])
 
@@ -57,18 +57,18 @@ const[t19,sett19]=useState(true)
 const[t20,sett20]=useState(true)
 const[t21,sett21]=useState(true)
 
-const[colort10,setColort10]=useState("black")
-const[colort11,setColort11]=useState("black")
-const[colort12,setColort12]=useState("black")
-const[colort13,setColort13]=useState("black")
-const[colort14,setColort14]=useState("black")
-const[colort15,setColort15]=useState("black")
-const[colort16,setColort16]=useState("black")
-const[colort17,setColort17]=useState("black")
-const[colort18,setColort18]=useState("black")
-const[colort19,setColort19]=useState("black")
-const[colort20,setColort20]=useState("black")
-const[colort21,setColort21]=useState("black")
+const[colort10,setColort10]=useState("orange")
+const[colort11,setColort11]=useState("orange")
+const[colort12,setColort12]=useState("orange")
+const[colort13,setColort13]=useState("orange")
+const[colort14,setColort14]=useState("orange")
+const[colort15,setColort15]=useState("orange")
+const[colort16,setColort16]=useState("orange")
+const[colort17,setColort17]=useState("orange")
+const[colort18,setColort18]=useState("orange")
+const[colort19,setColort19]=useState("orange")
+const[colort20,setColort20]=useState("orange")
+const[colort21,setColort21]=useState("orange")
 
 useEffect(()=>{
 console.log(days)
@@ -149,7 +149,7 @@ const imageHandler=(files:any)=>{
     <div  className="flex w-full h-max">
  
        <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-center ">
-       <img src={preview} className="rounded-full h-80 w-80 border border-slate-400"/>
+       <img src={preview} className="rounded-full h-80 w-80 border-2 border-orange-400 bg-white"/>
        <label className="bg-red-700 text-white h-10 w-max px-4 flex items-center justify-center rounded-lg mt-10">Upload Image
    <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
 </label>
@@ -268,122 +268,122 @@ const imageHandler=(files:any)=>{
             </div>
             <p className="mt-3">Choose your preffered time</p>
               <div className="grid grid-cols-5  shadow-2xl gap-x-2 gap-y-3 h-56 w-max p-3 mt-2 justify-self-start bg-white rounded-lg">
-                <button className={`bg-${colort10} text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett10(!t10);
+                <button className={`bg-${colort10}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett10(!t10);
                  if(t10){
                   setColort10("red")
                   setTime([...time,"10"]);
                  }else{
-                  setColort10("black")
+                  setColort10("orange")
                   const newarr=time.filter((t)=>{return (t!="10")})
                   setTime(newarr)
                  }
                   }}>10.00</button>
-               <button className={`bg-${colort11} text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett11(!t11);
+               <button className={`bg-${colort11}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett11(!t11);
                  if(t11){
                   setColort11("red")
                   setTime([...time,"11"]);
                  }else{
-                  setColort11("black")
+                  setColort11("orange")
                   const newarr=time.filter((t)=>{return (t!="11")})
                   setTime(newarr)
                  }
                   }}>11.00</button>
-               <button className={`bg-${ colort12 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett12(!t12);
+               <button className={`bg-${ colort12 }-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett12(!t12);
                  if(t12){
                   setColort12("red")
                   setTime([...time,"12"]);
                  }else{
-                  setColort12("black")
+                  setColort12("orange")
                   const newarr=time.filter((t)=>{return (t!="12")})
                   setTime(newarr)
                  }
                   }}>12.00</button>
-                <button className={`bg-${ colort13 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett13(!t13);
+                <button className={`bg-${ colort13 }-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett13(!t13);
                  if(t13){
                   setColort13("red")
                   setTime([...time,"13"]);
                  }else{
-                  setColort13("black")
+                  setColort13("orange")
                   const newarr=time.filter((t)=>{return (t!="13")})
                   setTime(newarr)
                  }
                   }}>13.00</button>
-                <button className={`bg-${ colort14 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett14(!t14);
+                <button className={`bg-${colort14}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett14(!t14);
                  if(t14){
                   setColort14("red")
                   setTime([...time,"14"]);
                  }else{
-                  setColort14("black")
+                  setColort14("orange")
                   const newarr=time.filter((t)=>{return (t!="14")})
                   setTime(newarr)
                  }
                   }}>14.00</button>
-                <button className={`bg-${ colort15 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett15(!t15);
+                <button className={`bg-${ colort15 }-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett15(!t15);
                  if(t15){
                   setColort15("red")
                   setTime([...time,"15"]);
                  }else{
-                  setColort15("black")
+                  setColort15("orange")
                   const newarr=time.filter((t)=>{return (t!="15")})
                   setTime(newarr)
                  }
                   }}>15.00</button>
-                <button className={`bg-${ colort16 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett16(!t16);
+                <button className={`bg-${ colort16 }-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett16(!t16);
                  if(t16){
                   setColort16("red")
                   setTime([...time,"16"]);
                  }else{
-                  setColort16("black")
+                  setColort16("orange")
                   const newarr=time.filter((t)=>{return (t!="16")})
                   setTime(newarr)
                  }
                   }}>16.00</button>
-                <button className={`bg-${ colort17 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett17(!t17);
+                <button className={`bg-${ colort17 }-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett17(!t17);
                  if(t17){
                   setColort17("red")
                   setTime([...time,"17"]);
                  }else{
-                  setColort17("black")
+                  setColort17("orange")
                   const newarr=time.filter((t)=>{return (t!="17")})
                   setTime(newarr)
                  }
                   }}>17.00</button>
-                <button className={`bg-${ colort18 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett18(!t18);
+                <button className={`bg-${colort18}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett18(!t18);
                  if(t18){
                   setColort18("red")
                   setTime([...time,"18"]);
                  }else{
-                  setColort18("black")
+                  setColort18("orange")
                   const newarr=time.filter((t)=>{return (t!="18")})
                   setTime(newarr)
                  }
                   }}>18.00</button>
-                <button className={`bg-${ colort19 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett19(!t19);
+                <button className={`bg-${colort19}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett19(!t19);
                  if(t19){
                   setColort19("red")
                   setTime([...time,"19"]);
                  }else{
-                  setColort19("black")
+                  setColort19("orange")
                   const newarr=time.filter((t)=>{return (t!="19")})
                   setTime(newarr)
                  }
                   }}>19.00</button>
-                <button className={`bg-${ colort20 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett20(!t20);
+                <button className={`bg-${ colort20}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett20(!t20);
                  if(t20){
                   setColort20("red")
                   setTime([...time,"20"]);
                  }else{
-                  setColort20("black")
+                  setColort20("orange")
                   const newarr=time.filter((t)=>{return (t!="20")})
                   setTime(newarr)
                  }
                   }}>20.00</button>
-                <button className={`bg-${ colort21 } text-red-500 rounded-lg h-10 px-3 w-max`} onClick={()=>{sett21(!t21);
+                <button className={`bg-${colort21}-400 text-black rounded-lg h-10 px-3 w-max`} onClick={()=>{sett21(!t21);
                  if(t21){
                   setColort21("red")
                   setTime([...time,"21"]);
                  }else{
-                  setColort21("black")
+                  setColort21("orange")
                   const newarr=time.filter((t)=>{return (t!="21")})
                   setTime(newarr)
                  }
