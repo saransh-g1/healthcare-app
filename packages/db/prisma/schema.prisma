@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+ id Int  @unique @default(autoincrement())
+ name String 
+ email String @unique
+ password String
+ photo String @default("")
+ appoint  Appointment[]
+
+}
+
+model Doctor{
+
+ id Int  @unique @default(autoincrement())
+ name String 
+ photo String @default("")
+ email String @unique
+ password String
+ address String @default("")
+ phoneNumber String @default("")
+ age String @default("")
+ clinic String @default("")
+ yearOfExp String @default("")
+ specialisation String @default("")
+ gender String @default("")
+ online String @default("")
+ offline String @default("")
+ days String[] 
+ time String[]
+appoint Appointment[]
+}
+
+model Appointment{
+  id Int @default(autoincrement()) @unique
+  patient     User   @relation(fields: [userId] ,references: [id])
+  doctor      Doctor   @relation(fields: [doctorId],references: [id])
+  Purpose     String
+  location    String
+  number      String
+  email       String
+  time        String
+  date        String
+  doctorId    Int      
+  userId      Int
+  easeOfUse      Int    @default(0)
+  worthForMoney  Int    @default(0)
+  prescription   String @default("")
+  patientReport  String @default("")
+  meetlink       String   @default("")
+  Status      State
+
+}
+
+enum State {
+  Pending
+  Success
+  Failure
+}

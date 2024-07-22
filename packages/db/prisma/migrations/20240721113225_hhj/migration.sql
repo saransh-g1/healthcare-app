@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Appointment" ADD COLUMN     "easeOfUse" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "worthForMoney" INTEGER NOT NULL DEFAULT 0;
