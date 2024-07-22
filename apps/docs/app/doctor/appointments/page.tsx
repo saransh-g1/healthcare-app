@@ -65,7 +65,7 @@ export default function Sess(){
 <div className="h-12 w-12 bg-slate-100 rounded-lg flex justify-center items-center"><FaCalendarDays size={30}></FaCalendarDays></div> 
 </div>
 </div>
-<p className="text-3xl font-semibold  my-2">My patients</p>
+<p className="text-3xl font-semibold  my-2">My gggjhsioggggpatients</p>
 
 
 
