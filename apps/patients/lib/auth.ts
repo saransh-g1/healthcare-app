@@ -2,7 +2,7 @@ import SignIn from "../app/signin/page";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from 'next-auth/providers/credentials';
-import {prisma} from "../../../packages/db"
+import {prisma} from "@repo/db/client"
 
 
 interface doc{
