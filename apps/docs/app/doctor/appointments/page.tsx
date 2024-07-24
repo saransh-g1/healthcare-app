@@ -72,7 +72,7 @@ export default function Sess(){
 <div className="border rounded-lg h-10 w-full mt-2">
 
 </div>
-{data?.appoint?.map((e)=>{ 
+{data?.appoint?.map((e:any)=>{ 
   if(e.Status==="Pending"){
     count=1;
   return <Sessions key={e.id} purpose={e.Purpose} appointmentNum={e.id.toString()} PatientName={data.name} time={e.time} day={e.date} id={e.id}></Sessions>}

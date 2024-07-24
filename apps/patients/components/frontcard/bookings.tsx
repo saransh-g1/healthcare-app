@@ -33,7 +33,7 @@ export default async function Booking(){
                 <p className="text-lg font-semibold border-b-2 border-blue-500 w-32 ml-1">Time</p>
 
             </div>
-           {appointments.map((e)=><Card key={e.id} id={e.id} purpose={e.Purpose} doctorName={e.doctor.name} time={e.time}/>)} 
+           {appointments.map((e:any)=><Card key={e.id} id={e.id} purpose={e.Purpose} doctorName={e.doctor.name} time={e.time}/>)} 
          
             </div>
         </div>

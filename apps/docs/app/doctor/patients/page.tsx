@@ -80,9 +80,9 @@ export default function Sessions(){
          <div >Status <PiCaretUpDownFill/></div>
          </div>
          
-         {data?.filter((e)=>{
+         {data?.filter((e:any)=>{
           return filter.toLowerCase()===""? e : e.patient.name.toLowerCase().includes(filter)
-         }).map((e)=>{
+         }).map((e:any)=>{
            return <Card key={e.id} id={Number(e.id)} patient={e.patient.name} time={e.time} status={e.Status} report={e.patientReport}/>
 })}
     </div>
