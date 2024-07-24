@@ -15,6 +15,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/doctor/template.tsx"  ],
   "exclude": ["node_modules"]
 }

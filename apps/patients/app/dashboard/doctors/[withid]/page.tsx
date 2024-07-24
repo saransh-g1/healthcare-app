@@ -47,7 +47,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
 
     useEffect(()=>{
       axios.post("http://localhost:3000/api/doctor",{
-        id: window.location.href.split("/")[5]
+        id: document.location.href.split("/")[5]
       }).then(res=>{
         setData(res.data.resp)
        // console.log(res.data.resp.address)
@@ -66,7 +66,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
         <div className="mx-1 h-screen">
         <div className="flex justify-between items-center h-20 w-full" >
         <div className="flex justify-around items-center">
-        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
+        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
 <h2 className="text-xl font-bold ">Session</h2>
 </div>
 <div className="flex">
@@ -169,7 +169,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
  <button className="w-72 h-10 bg-blue-500 text-xl font-semibold text-white text-center rounded-lg" onClick={async()=>{
   console.log(purpose)
  const res=await  axios.post("http://localhost:3000/api/book",{
-    id: window.location.href.split("/")[5],
+    id: document.location.href.split("/")[5],
     purpose,
     address,
     email,

@@ -2,7 +2,7 @@
 import { useEffect,useState } from "react";
 import { FaCalendarDays } from "react-icons/fa6";
 import axios from "axios"
-
+import { useRouter } from "next/navigation";
 interface patient{
   id: number, 
  name: string,
@@ -27,6 +27,7 @@ interface appoint{
 
 export default function Sess(){
   const [data,setData]=useState<patient | undefined>()
+  const router=useRouter()
   let count=0;
    useEffect(()=>{
     axios.get("http://localhost:3000/api/book")
@@ -43,7 +44,7 @@ export default function Sess(){
     <div className="w-full px-2" >
     <div className="flex justify-between items-center h-20 w-full" >
       <div className="flex justify-around items-center">
-      <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
+      <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
 <h2 className="text-xl font-bold " >Session</h2>
 </div>
 <div className="flex">

@@ -6,11 +6,6 @@ import { NextApiRequest,NextApiResponse } from "next";
 
 
 
-export const config = {
-  api: {
-      bodyParser: true,
-  },
-};
 
 export async function POST(request: NextRequest){
   

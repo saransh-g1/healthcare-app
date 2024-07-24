@@ -37,7 +37,7 @@ return(
      <div className="flex mt-4">
      </div>
     </div>
-    <div className="" style={{marginTop:"-270px"}} >
+    <div className="" style={{marginTop:"-220px"}} >
     <img src="/b8.jpg" className="h-80 rounded-xl mt-3  w-full brightness-75"></img>
     </div>
 </div>

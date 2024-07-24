@@ -4,7 +4,7 @@ import {PiCaretUpDownFill} from "react-icons/pi"
 import { useEffect,useState } from "react";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { FcGoogle } from "react-icons/fc";
-
+import { useRouter } from "next/navigation";
 import {Textarea} from "@nextui-org/input";
 import {Checkbox} from "@nextui-org/checkbox";
 import storage from "@/lib/firebaseConfig";
@@ -50,6 +50,8 @@ interface doc{
 export default function Info(){
     const [data,setData]=useState<appoint[]>()
     const [statusInfo,setStatus]=useState("Success")
+    const router = useRouter();
+
     let count=0
     const date=new Date()
    
@@ -64,7 +66,7 @@ export default function Info(){
         <div>
                  <div className="flex justify-between items-center h-20 w-full" >
         <div className="flex justify-around items-center">
-        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
+        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
 <h2 className="text-xl font-bold " >Session</h2>
 </div>
 <div className="flex">
@@ -118,7 +120,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
         }
        }
     
-       const imageUploader=()=>{
+        const imageUploader=()=>{
         if(image){
           // Upload file and metadata to the object 'images/mountains.jpg'
           const storageRef = ref(storage, 'reports/' + image?.name);
@@ -170,7 +172,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
           }else{
               console.log("file not found")
           }
-       }
+        }
 
 
 
@@ -270,3 +272,4 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
         
     )
 }
+

@@ -9,7 +9,9 @@ export default function Signup(){
     const [email,setEmail]= useState("")
     const [pass,setPass]= useState("")
     const [name,setName]=useState("")
-  console.log(window.location.href.split("/")[3])
+  
+  
+    // Accessing the fourth segment (index 3) of the path
     return(
       
         <div className="flex justify-center items-center w-screen h-screen bg-slate-100 ">
@@ -45,7 +47,7 @@ export default function Signup(){
                         username: email,
                         password: pass,
                         redirect: false,
-                        page: window.location.href.split("/")[3]
+                        page: document.location.href.split('/')[3]
                     })
                     console.log(res);
                     router.push("/dashboard")

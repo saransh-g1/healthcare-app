@@ -3,6 +3,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import { FaCalendarDays } from "react-icons/fa6";
 import { PiCaretUpDownFill } from "react-icons/pi";
 import { useEffect,useState } from "react";
+import { useRouter } from "next/navigation";
 import storage from "@/lib/firebaseconfig";
 import axios from "axios"
 
@@ -33,6 +34,7 @@ export default function Sessions(){
     const [data,setData]=useState<appoint[]>()
     const [filter,setfilter]=useState("")
     const date=new Date()
+    const router=useRouter()
  
     useEffect(()=>{
          axios.get("http://localhost:3001/api/getPatient")
@@ -47,7 +49,7 @@ export default function Sessions(){
         <div className="w-full">
               <div className="flex justify-between items-center h-20 " >
                 <div className="flex justify-around items-center">
-                <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
+                <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
         <h2 className="text-xl font-bold">Session</h2>
         </div>
         <div className="flex">

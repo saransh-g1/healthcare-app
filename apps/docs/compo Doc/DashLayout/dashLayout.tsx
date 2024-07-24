@@ -33,7 +33,17 @@ export default function DashLayout(){
         <div className="flex flex-col justify-center items-center">
 
             
-                <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={()=>{ router.push("/doctor")}}>
+                <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={(e)=>{e.preventDefault();
+                    document.getElementById("main")!.classList.add("page-transition");
+                    console.log(document.getElementById("main")!.classList)
+                    new Promise(resolve=>{setTimeout(resolve,1000)});
+
+                    router.push("/doctor")
+                    new Promise(resolve=>{setTimeout(resolve,1000)});
+
+                    document.getElementById("main")!.classList.remove("page-transition");
+
+                    }}>
                     <div className="flex justify-start items-center w-40">
                 <RiDashboardHorizontalFill />
                 <p className="font-bold ml-2">home</p>
