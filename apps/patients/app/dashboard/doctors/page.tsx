@@ -1,13 +1,10 @@
-"use server"
 
 import DoctorCard from "../../../components/DoctorCard/doctorCard"
-import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { NEXT_AUTH_CONFIG } from "@/lib/auth";
 import { prisma } from "@repo/db/client";
 
- export async function getDoctor(){
 
+export async function getDoctor(){
+    
     const res=await prisma.doctor.findMany({
         include:{
             appoint:true,
@@ -19,15 +16,21 @@ import { prisma } from "@repo/db/client";
 }
 
 
-
-
 export default async function AllDoctor(){
-    const doctors=await  getDoctor()
+   
+        const doctors=await  getDoctor();
+    
+    
+    let filter='';
     console.log(doctors)
     return(
         <div className="flex justify-center	w-full">
+
+            
         <div className="grid grid-cols-4 p-4 gap-x-4">
-         {doctors?.map((doctor,index)=>{
+         {doctors?.filter((e)=>{
+          return filter.toLowerCase()===""? e : e.name.toLowerCase().includes(filter)
+         }).map((doctor,index)=>{
             let number=0
             let totalRate=0
            const rate=doctor.appoint.map((a)=>{

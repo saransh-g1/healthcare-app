@@ -26,11 +26,11 @@ async function appointments(){
    return userCount
 }
 
-export default function FrontCard(){
+export default function FrontCard({display}:{display:string}){
   
   
     return(
-        <div className="w-max ">
+        <div className={`w-max ${display}`}>
         
         <p className="text-xl font-semibold "> Status</p>
          <div className="flex my-2 ">

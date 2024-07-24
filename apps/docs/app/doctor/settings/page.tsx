@@ -1,10 +1,14 @@
 "use client"
 import React from "react";
-import {useState,useEffect} from "react"
 import axios from "axios"
 import { useSession } from "next-auth/react";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import storage from "@/lib/firebaseconfig";
+import { mappls, mappls_plugin } from "mappls-web-maps";
+import { useEffect, useRef, useState,useLayoutEffect } from "react";
+
+const mapplsClassObject = new mappls();
+const mapplsPluginObject = new mappls_plugin();
 export default function(){
 
  const session=useSession()  
@@ -144,11 +148,45 @@ const imageHandler=(files:any)=>{
     }
  }
 
+ //map//
+ const mapRef:any = useRef(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+  const [locationByMap,setLocationByMap]=useState("")
+
+  const loadObject = { map: true, plugins: ["search"] };
  
+
+  useEffect(() => {
+    mapplsClassObject.initialize("c77a0630-af59-4451-b734-62c7638f34bb", loadObject, () => {
+      const newMap = mapplsClassObject.Map({
+        id: "map",
+        properties: {
+          center: [28.633, 77.2194],
+          zoom: 4,
+        },
+      });
+        console.log(mapplsClassObject)
+      newMap.on("load", () => {
+        setIsMapLoaded(true);
+      });
+      mapRef.current = newMap;
+    });
+   
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+      }
+    };
+  }, []);
+
+//map picker//
+
  return(
-    <div  className="flex w-full h-max">
- 
-       <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-center ">
+  <div>
+    <div  className="flex w-full h-max relative">
+       
+       <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-center">
        <img src={preview} className="rounded-full h-80 w-80 border-2 border-orange-400 bg-white"/>
        <label className="bg-red-700 text-white h-10 w-max px-4 flex items-center justify-center rounded-lg mt-10">Upload Image
    <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
@@ -175,9 +213,14 @@ const imageHandler=(files:any)=>{
             </div>
             </div>
 
+            <div id="map" className="z-30 w-full h-96" style={{ padding: "0"}}  >
+      {isMapLoaded && <PlacePickerPlugin map={mapRef.current} setLocationByMap={setLocationByMap}/>}
+
+    </div>
+
             <div className="ml-3">
             <p>Location</p>
-            <input className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(e.target.value)}}></input>
+            <input className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(e.target.value)}} value={locationByMap}></input>
             </div>
 
             <div className="mt-5">
@@ -415,8 +458,10 @@ const imageHandler=(files:any)=>{
                 }}>Save & proceed</button>
                 </div>
             </div>
-     
+           
          </div>
+       
+</div>
     
  )
 }
@@ -435,3 +480,36 @@ function Card({t1,t2,p1,p2,onc1,onc2}:{t1:string,t2:string,p2:string,p1:string,o
             </div>
    )
 }
+
+const PlacePickerPlugin = ({ map,setLocationByMap }:{map:any,setLocationByMap:any}) => {
+  const placePickerRef = useRef(null);
+
+  useEffect(() => {
+    if (map && placePickerRef.current) {
+      mapplsClassObject.removeLayer({ map, layer: placePickerRef.current });
+    }
+    var options = {
+      map: map,
+      location: { lat: 28.8787, lng: 77.08888 },
+      search: true,
+    };
+    placePickerRef.current = mapplsPluginObject.placePicker(
+      options,
+      callback_method
+    );
+
+    function callback_method(e:any) {
+      if (e.data){ console.log(e.data);
+      setLocationByMap(e.data.formatted_address)
+      }
+      else console.log(e);
+    }
+
+    return () => {
+      if (map && placePickerRef.current) {
+        mapplsClassObject.removeLayer({ map, layer: placePickerRef.current });
+      }
+    };
+  }, [map]);
+  return null
+};

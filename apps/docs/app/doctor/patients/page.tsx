@@ -31,6 +31,7 @@ interface appoint{
 
 export default function Sessions(){
     const [data,setData]=useState<appoint[]>()
+    const [filter,setfilter]=useState("")
     const date=new Date()
  
     useEffect(()=>{
@@ -41,12 +42,13 @@ export default function Sessions(){
          })
   },[])
 
+
     return(
         <div className="w-full">
               <div className="flex justify-between items-center h-20 " >
                 <div className="flex justify-around items-center">
                 <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
-        <h2 className="text-xl font-bold " >Session</h2>
+        <h2 className="text-xl font-bold">Session</h2>
         </div>
         <div className="flex">
             <div className="mr-2" >
@@ -57,12 +59,13 @@ export default function Sessions(){
        <div className="h-12 w-12 bg-slate-100 rounded-lg flex justify-center items-center"><FaCalendarDays size={30}></FaCalendarDays></div> 
         </div>
     </div>
-         <p className="text-3xl font-semibold mx-3 my-2">My Bookings</p>
+         <p className="text-3xl font-semibold mx-3 my-2">My Patients</p>
         
 
 
-      <div className="border rounded-lg h-10 mx-3 mt-2">
-          
+      <div className="border rounded-lg h-10 mx-3 mt-2 flex items-center justify-center">
+          <input className="outline-none rounded-md w-96 h-10 border-2 p-1 mx-4" placeholder="search by patients name" onChange={(e)=>{setfilter(e.target.value)}}></input>
+          <button className="bg-blue-400 rounded-md text-white w-24 h-8">Search</button>
       </div>
 
       <div>
@@ -74,7 +77,12 @@ export default function Sessions(){
          <div >Meeting Time <PiCaretUpDownFill/></div>
          <div >Status <PiCaretUpDownFill/></div>
          </div>
-         {data?.map((e)=><Card key={e.id} id={Number(e.id)} patient={e.patient.name} time={e.time} status={e.Status} report={e.patientReport}/>)}
+         
+         {data?.filter((e)=>{
+          return filter.toLowerCase()===""? e : e.patient.name.toLowerCase().includes(filter)
+         }).map((e)=>{
+           return <Card key={e.id} id={Number(e.id)} patient={e.patient.name} time={e.time} status={e.Status} report={e.patientReport}/>
+})}
     </div>
             </div>
     )

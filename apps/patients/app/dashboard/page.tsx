@@ -1,11 +1,9 @@
-
 import { FaCalendarDays } from "react-icons/fa6";
 import FrontCard from "../../components/frontcard/frontcard";
 import Booking from "../../components/frontcard/bookings";
 export default function Dash(){
 
     const date=new Date()
-    
 return(
     <div className=" w-full px-3">
     <div className="flex justify-between items-center " >
@@ -36,7 +34,7 @@ return(
 </div>
  
  <div className="flex justify-around my-6">
-   <FrontCard></FrontCard>
+   <FrontCard display="block"></FrontCard>
    <Booking></Booking>
    </div> 
 

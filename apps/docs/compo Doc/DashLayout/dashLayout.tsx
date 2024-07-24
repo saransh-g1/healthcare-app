@@ -48,13 +48,7 @@ export default function DashLayout(){
                 </div>
                 </button>
 
-                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={()=>{router.push("/doctor/blogging")}} >
-                 <div className="flex justify-start items-center w-40">
-                <FcVoicePresentation size={24}/>
-                <p className="font-bold ml-2">Blogging</p>
-                </div>
-
-                </button>
+                 
                  <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={()=>{router.push("/doctor/appointments")}} >
                  <div className="flex justify-start items-center w-40">
 

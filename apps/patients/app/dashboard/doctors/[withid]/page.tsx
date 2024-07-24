@@ -66,7 +66,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
         <div className="mx-1 h-screen">
         <div className="flex justify-between items-center h-20 w-full" >
         <div className="flex justify-around items-center">
-        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4">Back</button>
+        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{window.history.back()}}>Back</button>
 <h2 className="text-xl font-bold ">Session</h2>
 </div>
 <div className="flex">
