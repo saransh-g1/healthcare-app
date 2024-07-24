@@ -1,7 +1,7 @@
 import { NextRequest,NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { NEXT_AUTH_CONFIG } from "@/lib/auth";
-import { prisma } from "../../../../../packages/db/app";
+import { prisma } from "../../../../../packages/db";
 import { NextApiRequest,NextApiResponse } from "next";
 
 

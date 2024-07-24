@@ -1,4 +1,4 @@
-import { prisma } from "../../../../../packages/db/app";
+import { prisma } from "../../../../../packages/db";
 import { NextResponse } from "next/server";
 
 interface appoint{
