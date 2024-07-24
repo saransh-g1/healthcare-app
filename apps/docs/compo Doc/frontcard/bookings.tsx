@@ -1,4 +1,4 @@
-import { prisma } from "@repo/db/client"
+import { prisma } from "../../../../packages/db/app"
 import { getServerSession } from "next-auth"
 import { NEXT_AUTH_CONFIG } from "@/lib/auth";
 async function allappointments(){

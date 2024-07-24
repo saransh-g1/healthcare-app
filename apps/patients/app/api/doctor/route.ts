@@ -1,4 +1,4 @@
-import { prisma } from "@repo/db/client";
+import { prisma } from "../../../../../packages/db/app";
 import { NextRequest, NextResponse } from "next/server";
 
  export async function POST(req:NextRequest){

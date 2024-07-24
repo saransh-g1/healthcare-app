@@ -1,7 +1,23 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
- "outDir": "dist"
+    "outDir": "dist",
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,6 +1,6 @@
 
 import { FaUserDoctor } from "react-icons/fa6";
-import { prisma } from "@repo/db/client";
+import { prisma } from "../../../../packages/db/app";
 async function getDoctor(){
    const userCount = await prisma.doctor.count()
    return userCount

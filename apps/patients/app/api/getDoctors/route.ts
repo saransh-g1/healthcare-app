@@ -1,4 +1,4 @@
-import { prisma } from "@repo/db/client";
+import { prisma } from "../../../../../packages/db/app";
 import { NextResponse } from "next/server";
 
 interface appoint{

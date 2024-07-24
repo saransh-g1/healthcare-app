@@ -1,5 +1,5 @@
 "use server"
-import { prisma } from "@repo/db/client"
+import { prisma } from "../../../../packages/db/app"
 export async function getDoctor(){
     
         const res=await prisma.doctor.findMany({
