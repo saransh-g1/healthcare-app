@@ -6,7 +6,6 @@ import { useEffect,useState } from "react";
 import { useRouter } from "next/navigation";
 import storage from "@/lib/firebaseconfig";
 import axios from "axios"
-import { config } from "../../../lib/config"
 interface appoint{
     id        :  string,
     Purpose   :  string,
