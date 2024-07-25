@@ -79,7 +79,7 @@ export const  NEXT_AUTH_CONFIG={
         }
       }
     },      
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET_docs,
     callbacks: {
         jwt: async ({ user, token }: any) => {
             if (user) {
