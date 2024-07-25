@@ -9,6 +9,8 @@ import { useEffect, useRef, useState,useLayoutEffect } from "react";
 
 const mapplsClassObject = new mappls();
 const mapplsPluginObject = new mappls_plugin();
+const UR=process.env.NEXTAUTH_URL_docs || "http://localhost:3001"
+
 export default function(){
 
  const session=useSession()  
@@ -157,7 +159,7 @@ const imageHandler=(files:any)=>{
  
 
   useEffect(() => {
-    mapplsClassObject.initialize(process.env.Map, loadObject, () => {
+    mapplsClassObject.initialize("812130a0-0b7f-46ef-b2ac-19a98c86f6d0", loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
@@ -438,7 +440,7 @@ const imageHandler=(files:any)=>{
                 <button className="mx-4" >Change Password</button>
                 <button className="mx-4" onClick={async()=>{
                   imageUploader()
-                const res=await  axios.post("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/doctor",{
+                const res=await  axios.post(`${UR}/api/doctor`,{
                  image:download, 
                  address,
                  phoneNumber,
