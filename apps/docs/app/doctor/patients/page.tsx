@@ -37,7 +37,7 @@ export default function Sessions(){
     const router=useRouter()
  
     useEffect(()=>{
-         axios.get("http://localhost:3001/api/getPatient")
+         axios.get("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/getPatient")
          .then(res=>{
             console.log(res.data)
             setData(res.data.appointments)
@@ -175,7 +175,7 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
         </label>
            <button className={`w-max px-3 rounded-full h-6 bg-${color}-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
             imageUploader()
-            const res= await axios.post("http://localhost:3001/api/patients/prescription",{
+            const res= await axios.post("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/patients/prescription",{
                  prescription: download,
                  id
               })
@@ -183,7 +183,7 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
            }}>send</button></div>
         <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
            <div className="w-max px-3"><input className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-${color}-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
-            const res= await axios.post("http://localhost:3001/api/patients/meetLink",{
+            const res= await axios.post("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/patients/meetLink",{
                  meetlink,
                  id
               })

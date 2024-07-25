@@ -157,7 +157,7 @@ const imageHandler=(files:any)=>{
  
 
   useEffect(() => {
-    mapplsClassObject.initialize("db49aa1a-b01c-4cc6-aa4f-8933d270eedd", loadObject, () => {
+    mapplsClassObject.initialize(process.env.Map, loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
@@ -438,7 +438,7 @@ const imageHandler=(files:any)=>{
                 <button className="mx-4" >Change Password</button>
                 <button className="mx-4" onClick={async()=>{
                   imageUploader()
-                const res=await  axios.post("http://localhost:3001/api/doctor",{
+                const res=await  axios.post("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/doctor",{
                  image:download, 
                  address,
                  phoneNumber,

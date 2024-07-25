@@ -39,7 +39,7 @@ export default function Sess(){
   const [data,setData]=useState<doc | undefined>()
   let count=0;
    useEffect(()=>{
-    axios.get("http://localhost:3001/api/appointments")
+    axios.get("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/appointments")
     .then((res)=>{
         setData(res.data.appointments[0])
         console.log(res.data.appointments[0])
@@ -106,13 +106,13 @@ export default function Sess(){
         <p>Timing:-{time}:00 PM</p>
         </div>
         <button className="bg-blue-300 text-blue-700 rounded-lg h-10 w-96 my-4 text-center" onClick={async()=>{
-           const res=await axios.post("http://localhost:3001/api/appointments/accept",{
+           const res=await axios.post("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/appointments/accept",{
             id,
            })
            console.log(res)
         }}>Accept Booking</button>
         <button className="bg-red-400 ml-3  text-white rounded-lg h-10 w-96 my-4 text-center"  onClick={async()=>{
-           const res=await axios.post("http://localhost:3001/api/appointments/reject",{
+           const res=await axios.post("https://healthcare-app-doctors-gzr5ookix-saranshgupta2711s-projects.vercel.app/api/appointments/reject",{
             id,
            })
            console.log(res)
