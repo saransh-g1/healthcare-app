@@ -10,16 +10,6 @@
   "exports": {
     "./client": "./index.ts"
   },"scripts": {
-    "db:migrate:deploy": "prisma migrate deploy",
-    "db:migrate:dev": "prisma migrate dev",
-    "db:push": "prisma db push",
-    "db:seed": "tsx src/seed.ts",
-    "dev": "tsup --watch",
-    "format": "prisma format",
-    "generate": "prisma generate",
-    "lint": "eslint ./src --fix",
-    "prebuild": "npm run generate",
-    "predev": "npm run generate",
-    "studio": "prisma studio"
+        "build":"npx prisma generate"
   }
 }
