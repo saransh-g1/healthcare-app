@@ -4,7 +4,7 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**",".next/**", "!.next/cache/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -13,13 +13,14 @@
       "cache": false,
       "persistent": true
     },
-    "db:generate": {
-      "dependsOn": ["^db:generate"],
-      "cache": false
+      "db:migrate:deploy": {
+      "outputs": []
     },
     "db:push": {
-      "dependsOn": ["^db:generate"],
-      "cache": false
+      "outputs": []
+    },
+    "generate": {
+      "dependsOn": ["^generate"]
     }
   }
 }
