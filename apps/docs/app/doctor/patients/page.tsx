@@ -28,13 +28,13 @@ interface appoint{
    email: string,
    password: string,
   }
-  const URL=process.env.NEXTAUTH_URL_docs || "http://localhost:3001"
+  const URL=process.env.NEXT_PUBLIC_NEXTAUTH_URL_docs || "http://localhost:3001"
 export default function Sessions(){
     const [data,setData]=useState<appoint[]>()
     const [filter,setfilter]=useState("")
     const date=new Date()
     const router=useRouter()
- 
+ console.log(process.env.NEXT_PUBLIC_VERCEL_URL	)
     useEffect(()=>{
       console.log()
     
