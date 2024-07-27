@@ -34,11 +34,11 @@ export default function Sessions(){
     const [filter,setfilter]=useState("")
     const date=new Date()
     const router=useRouter()
- console.log(process.env.NEXT_PUBLIC_VERCEL_URL	)
+ console.log("https://healthcare-app-doctors-app.vercel.app/"	);
     useEffect(()=>{
       console.log()
     
-         axios.get(`${URL}/api/getPatient`)
+         axios.get(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`)
          .then(res=>{
             console.log(res.data)
             setData(res.data.appointments)

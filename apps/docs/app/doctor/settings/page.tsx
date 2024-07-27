@@ -440,7 +440,7 @@ const imageHandler=(files:any)=>{
                 <button className="mx-4" >Change Password</button>
                 <button className="mx-4" onClick={async()=>{
                   imageUploader()
-                const res=await  axios.post(`${UR}/api/doctor`,{
+                const res=await  axios.post(`https://healthcare-app-doctors-app.vercel.app/api/doctor`,{
                  image:download, 
                  address,
                  phoneNumber,

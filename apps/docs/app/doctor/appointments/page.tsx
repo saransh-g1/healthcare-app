@@ -40,7 +40,7 @@ export default function Sess(){
   const [data,setData]=useState<doc | undefined>()
   let count=0;
    useEffect(()=>{
-    axios.get(`${URL}/api/appointments`)
+    axios.get(`https://healthcare-app-doctors-app.vercel.app/api/appointments`)
     .then((res)=>{
         setData(res.data.appointments[0])
         console.log(res.data.appointments[0])
