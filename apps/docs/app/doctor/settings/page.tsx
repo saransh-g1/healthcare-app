@@ -17,17 +17,17 @@ export default function(){
 
    const [image,setImage]=useState<File | null>()
   const [preview,setPreviewUrl]=useState<string>()
-  const [ download, setDownload]=useState("orange")
+  const [ download, setDownload]=useState("")
 
-  const [address, setAddress]=useState("orange")
-  const [phoneNumber, setPhone]=useState("orange")
-  const [age, setAge]=useState("orange")
-  const [clinic, setClinic]=useState("orange")
-  const [exp, setExp]=useState("orange")
-  const [gender, setGender]=useState("orange")
-  const [spec, setSpec]=useState("orange")
-  const [offline, setOffline]=useState("orange")
-  const [online, setOnline]=useState("orange")
+  const [address, setAddress]=useState("")
+  const [phoneNumber, setPhone]=useState("")
+  const [age, setAge]=useState("")
+  const [clinic, setClinic]=useState("")
+  const [exp, setExp]=useState("")
+  const [gender, setGender]=useState("")
+  const [spec, setSpec]=useState("")
+  const [offline, setOffline]=useState("")
+  const [online, setOnline]=useState("")
   const [days, setDays]=useState<string[]>([])
   const [time, setTime]=useState<string[]>([])
 
@@ -140,6 +140,21 @@ const imageHandler=(files:any)=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setDownload(downloadURL)
           console.log('File available at', downloadURL);
+         axios.post(`https://healthcare-app-doctors-app.vercel.app/api/doctor`,{
+            image:download, 
+            address,
+            phoneNumber,
+            age,
+            clinic,
+            yearOfExp:exp,
+            specialisation:spec,
+            gender,
+            online,
+            offline,
+            days,
+            time
+             }).then(res=>console.log(res))
+              
         });
       }
     );
@@ -159,7 +174,8 @@ const imageHandler=(files:any)=>{
  
 
   useEffect(() => {
-    mapplsClassObject.initialize("812130a0-0b7f-46ef-b2ac-19a98c86f6d0", loadObject, () => {
+    console.log(process.env.NEXT_PUBLIC_map)
+    mapplsClassObject.initialize(process.env.NEXT_PUBLIC_map, loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
@@ -440,21 +456,7 @@ const imageHandler=(files:any)=>{
                 <button className="mx-4" >Change Password</button>
                 <button className="mx-4" onClick={async()=>{
                   imageUploader()
-                const res=await  axios.post(`https://healthcare-app-doctors-app.vercel.app/api/doctor`,{
-                 image:download, 
-                 address,
-                 phoneNumber,
-                 age,
-                 clinic,
-                 yearOfExp:exp,
-                 specialisation:spec,
-                 gender,
-                 online,
-                 offline,
-                 days,
-                 time
-                  })
-                   console.log(res)
+               
                 console.log(spec,time,days)
                
                 }}>Save & proceed</button>
