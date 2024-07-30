@@ -238,7 +238,7 @@ const imageHandler=(files:any)=>{
 
             <div className="ml-3">
             <p>Location</p>
-            <input className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(e.target.value)}} value={locationByMap}></input>
+            <input className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(locationByMap)}} value={locationByMap}></input>
             </div>
 
             <div className="mt-5">

@@ -18,7 +18,7 @@ interface appoint{
     worthForMoney: number
   }
   interface Doc{
-    image: string,
+    photo: string,
     id: number,
     name: string,
     email:string,
@@ -72,7 +72,7 @@ export default function AllDoctor(){
             })
             console.log(rate)
             
-            return <DoctorCard rating={totalRate/(number*2)} key={doctor.id} image={doctor.image} address={doctor.address} spec={doctor.specialisation} name={doctor.name} days={doctor.days} did={doctor.id.toString()}></DoctorCard>})}
+            return <DoctorCard rating={totalRate/(number*2)} key={doctor.id} image={doctor.photo} address={doctor.address} spec={doctor.specialisation} name={doctor.name} days={doctor.days} did={doctor.id.toString()}></DoctorCard>})}
         
 
 
