@@ -1,6 +1,6 @@
 "use client"
 import DoctorCard from "../../../components/DoctorCard/doctorCard"
-import  prisma  from "@repo/db/client";
+import {prisma}  from "@repo/db/client";
 import {useState, useEffect} from "react"
 import axios from "axios"
 interface appoint{

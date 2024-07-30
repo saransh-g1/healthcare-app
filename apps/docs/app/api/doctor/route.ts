@@ -1,7 +1,7 @@
 import { NEXT_AUTH_CONFIG } from "@/lib/auth"
 import {getServerSession} from "next-auth"
 import {NextResponse,NextRequest} from "next/server"
-import prisma from "@repo/db/client"
+import {prisma} from "@repo/db/client"
 export async function GET(){
     const session=await getServerSession(NEXT_AUTH_CONFIG)
     console.log(JSON.stringify(session))
