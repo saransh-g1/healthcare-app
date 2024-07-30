@@ -56,7 +56,7 @@ export default function Info(){
     const date=new Date()
    
     useEffect(()=>{
-         axios.get("http://localhost:3000/api/getInfo")
+         axios.get("https://healthcare-app-patients-app.vercel.app/api/getInfo")
          .then(res=>{
             console.log(res.data)
             setData(res.data.appointments)
@@ -187,7 +187,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
         </label>
            <button className="w-max px-3 rounded-full h-6 bg-green-300" disabled={statusInfo==="Pending" ||statusInfo==="Failure" }  onClick={async()=>{
             imageUploader()
-            const res= await axios.post("http://localhost:3000/api/report",{
+            const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/report",{
                  report: download,
                  id
               })
@@ -258,7 +258,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
     </div>
      <div className="flex items-center justify-center">
     <button className="h-12 w-32 rounded-sm bg-green-500 font-semibold" onClick={async()=>{
-     const res= await axios.post("http://localhost:3000/api/review",{
+     const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/review",{
       id,
       money,
       ease

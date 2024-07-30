@@ -46,7 +46,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
       const date=new Date()
 
     useEffect(()=>{
-      axios.post("http://localhost:3000/api/doctor",{
+      axios.post("https://healthcare-app-patients-app.vercel.app/api/doctor",{
         id: document.location.href.split("/")[5]
       }).then(res=>{
         setData(res.data.resp)
@@ -139,7 +139,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
  <div className="flex justify-around items-center">
 <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar shouldDisableDate={isWeekend} onChange={async(value)=>{
-      const res=await axios.post("http://localhost:3000/api/getAppointment",{
+      const res=await axios.post("https://healthcare-app-patients-app.vercel.app/api/getAppointment",{
         day:value.$D.toString()
       })
       console.log(res.data.appointments)
@@ -168,7 +168,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
 <div className="flex items-center justify-center mb-5">
  <button className="w-72 h-10 bg-blue-500 text-xl font-semibold text-white text-center rounded-lg" onClick={async()=>{
   console.log(purpose)
- const res=await  axios.post("http://localhost:3000/api/book",{
+ const res=await  axios.post("https://healthcare-app-patients-app.vercel.app/api/book",{
     id: document.location.href.split("/")[5],
     purpose,
     address,

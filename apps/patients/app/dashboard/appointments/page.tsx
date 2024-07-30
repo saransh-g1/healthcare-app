@@ -30,7 +30,7 @@ export default function Sess(){
   const router=useRouter()
   let count=0;
    useEffect(()=>{
-    axios.get("http://localhost:3000/api/book")
+    axios.get("https://healthcare-app-patients-app.vercel.app/api/book")
     .then((res)=>{
         setData(res.data.appointments[0])
         console.log(res.data.appointments[0])
@@ -94,7 +94,7 @@ export default function Sess(){
         <p>Timing:-{time}:00 PM</p>
         </div>
         <button className="bg-blue-300 text-blue-700 rounded-lg h-10 w-96 my-4 text-center"   onClick={async()=>{
-           const res= await axios.post("http://localhost:3000/api/book/cancel",{
+           const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/book/cancel",{
             id,
            })
            console.log(res)
