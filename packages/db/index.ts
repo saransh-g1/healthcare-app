@@ -1,5 +1,18 @@
-export * from "@prisma/client"
-import {PrismaClient} from "@prisma/client"
-console.log('Initializing Prisma Client...');
-export const prisma = new PrismaClient();
-console.log('Prisma Client initialized:', prisma);
+
+
+
+import { PrismaClient } from '@prisma/client'
+
+const prismaClientSingleton = () => {
+  return new PrismaClient()
+}
+
+declare global {
+  var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
+}
+
+export const prisma: ReturnType<typeof prismaClientSingleton> = globalThis.prismaGlobal ?? prismaClientSingleton()
+
+
+
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
