@@ -141,7 +141,7 @@ const imageHandler=(files:any)=>{
           setDownload(downloadURL)
           console.log('File available at', downloadURL);
          axios.post(`https://healthcare-app-doctors-app.vercel.app/api/doctor`,{
-            image:download, 
+            image:downloadURL, 
             address,
             phoneNumber,
             age,
@@ -175,7 +175,7 @@ const imageHandler=(files:any)=>{
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_map)
-    mapplsClassObject.initialize(process.env.NEXT_PUBLIC_map, loadObject, () => {
+    mapplsClassObject.initialize("05daa3f5-906b-4c25-b37b-78e3f972ddf5", loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
