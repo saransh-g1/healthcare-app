@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { FaCalendarDays } from "react-icons/fa6";
-import FrontCard from "../../compo Doc/frontcard/frontcard";
-import Booking from "../../compo Doc/frontcard/bookings";
+import FrontCard from "../../components/frontcard/frontcard";
+import Booking from "../../components/frontcard/bookings";
 import { NEXT_AUTH_CONFIG } from "../../lib/auth";
 async function getUser() {
   const session = await getServerSession(NEXT_AUTH_CONFIG);

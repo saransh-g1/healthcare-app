@@ -1,4 +1,4 @@
-import DashLayout from "../../compo Doc/DashLayout/dashLayout"
+import DashLayout from "../../components/DashLayout/dashLayout"
 import { Comic_Neue } from "next/font/google";
 
 const comic= Comic_Neue({
