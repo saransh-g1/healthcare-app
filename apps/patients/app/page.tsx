@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { getServerSession } from "next-auth"
 import { NEXT_AUTH_CONFIG } from "../lib/auth";

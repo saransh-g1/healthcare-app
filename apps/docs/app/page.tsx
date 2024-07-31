@@ -1,6 +1,8 @@
+"use client"
 import Image from "next/image";
 import { getServerSession } from "next-auth"
-import { NEXT_AUTH_CONFIG } from "@/lib/auth";
+import { NEXT_AUTH_CONFIG } from "../lib/auth";
+import { useRouter } from "next/navigation";
 async function getUser() {
   const session = await getServerSession(NEXT_AUTH_CONFIG);
   return session;
@@ -8,8 +10,9 @@ async function getUser() {
 export default async function Home() {
   const session= await getUser()
   console.log(session)
+  const router=useRouter()
   return (
-    <div>
+    <div >
     <div className="h-screen">
      
      <div>JSON.stringify({session?.user?.name})</div>
@@ -17,8 +20,8 @@ export default async function Home() {
         <div className="text-xl font-extrabold">tryst | online sol</div>
 
         <div className="flex items-center ">
-          <button className="mr-14 text-lg font-thin">Login</button>
-          <button className="mr-5 text-lg  font-thin">Register</button>
+          <button className="mr-14 text-lg font-thin" onClick={()=>{router.push("/signin")}}>Login</button>
+          <button className="mr-5 text-lg  font-thin" onClick={()=>{router.push("/signup")}}>Register</button>
         </div>
      </div>
 
