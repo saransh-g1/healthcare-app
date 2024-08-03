@@ -2,12 +2,13 @@ import Image from "next/image";
 import { getServerSession } from "next-auth"
 import { NEXT_AUTH_CONFIG } from "../lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link"
 async function getUser() {
   const session = await getServerSession(NEXT_AUTH_CONFIG);
   return session;
 }
 export default async function Home() {
-  const session= await getUser()
+  const session= await getUser();
   console.log(session)
   return (
     <div >
@@ -18,8 +19,8 @@ export default async function Home() {
         <div className="text-xl font-extrabold">tryst | online sol</div>
 
         <div className="flex items-center ">
-          <button className="mr-14 text-lg font-thin" onClick={()=>{redirect("/signin")}}>Login</button>
-          <button className="mr-5 text-lg  font-thin" onClick={()=>{redirect("/signup")}}>Register</button>
+        <Link href="/signin" className="mr-14 text-lg font-thin" >Login</Link>
+          <Link  href="/signin"className="mr-5 text-lg  font-thin" >Register</Link>
         </div>
      </div>
 
