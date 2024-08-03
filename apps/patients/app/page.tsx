@@ -19,7 +19,7 @@ export default async function Home() {
         <div className="text-xl font-extrabold">tryst | online sol</div>
 
         <div className="flex items-center ">
-        <Link href="/signup" className="mr-14 text-lg font-thin" >Login</Link>
+        <Link href="/signin" className="mr-14 text-lg font-thin" >Login</Link>
           <Link  href="/signin"className="mr-5 text-lg  font-thin" >Register</Link>
         </div>
      </div>

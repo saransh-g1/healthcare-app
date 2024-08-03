@@ -108,13 +108,13 @@ export default function Sess(){
         <p>Timing:-{time}:00 PM</p>
         </div>
         <button className="bg-blue-300 text-blue-700 rounded-lg h-10 w-96 my-4 text-center" onClick={async()=>{
-           const res=await axios.post(`${URL}/api/appointments/accept`,{
+           const res=await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/appointments/accept`,{
             id,
            })
            console.log(res)
         }}>Accept Booking</button>
         <button className="bg-red-400 ml-3  text-white rounded-lg h-10 w-96 my-4 text-center"  onClick={async()=>{
-           const res=await axios.post(`${URL}api/appointments/reject`,{
+           const res=await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/appointments/reject`,{
             id,
            })
            console.log(res)

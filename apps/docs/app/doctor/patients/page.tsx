@@ -162,7 +162,7 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
           // Upload completed successfully, now we can get the download URL
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setDownload(downloadURL)
-            const res=  axios.post(`${URL}/api/patients/prescription`,{
+            const res=  axios.post(`https://healthcare-app-doctors-app.vercel.app/api/patients/prescription`,{
               prescription: downloadURL,
               id
            }).then((res)=>{
@@ -194,7 +194,7 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
         <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
            <div className="w-max px-3"><input className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-${color}-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
             setLoading(true)
-            const res= await axios.post(`${URL}/api/patients/meetLink`,{
+            const res= await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/patients/meetLink`,{
                  meetlink,
                  id
               })
