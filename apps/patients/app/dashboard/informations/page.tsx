@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import {Textarea} from "@nextui-org/input";
 import {Checkbox} from "@nextui-org/checkbox";
 import storage from "@/lib/firebaseConfig";
+import { Loading } from "@/components/loader/loader";
 import axios from "axios"
 import { RadioGroup,Radio } from "@nextui-org/radio";
 interface appoint{
@@ -51,8 +52,8 @@ export default function Info(){
     const [data,setData]=useState<appoint[]>()
     const [statusInfo,setStatus]=useState("Success")
     const router = useRouter();
-
-    let count=0
+    const [loading,setLoading]=useState(false)
+    let count=0;
     const date=new Date()
    
     useEffect(()=>{
@@ -97,15 +98,15 @@ export default function Info(){
          {data?.map((e)=>{ 
             if(e.Status===statusInfo){
               count=1;
-            return <Card id={Number(e.id)} key={e.id} clinic={e.doctor.clinic} doctor={e.doctor.name} time={e.time} day={e.date} status={e.Status} meet={e.meetlink} pres={e.prescription} statusInfo={statusInfo}/>}})}
+            return <Card id={Number(e.id)} key={e.id} clinic={e.doctor.clinic} doctor={e.doctor.name} time={e.time} day={e.date} status={e.Status} meet={e.meetlink} pres={e.prescription} statusInfo={statusInfo} loading={loading} setLoading={setLoading}/>}})}
     {count===0? <div className="flex items-center justify-center w-full h-96"><p className="text-center">no record found on {statusInfo}</p></div>: <div className="flex justify-center my-10"><p className="">----{statusInfo}----</p></div>}
     </div>
- 
+ <Loading loading={loading}></Loading>
 </div>
     )
 }
 
-function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:string,time:string,day:string,status:string,clinic:string,id:number,meet:string,pres:string,statusInfo:string}){
+function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo,loading,setLoading}:{doctor:string,time:string,day:string,status:string,clinic:string,id:number,meet:string,pres:string,statusInfo:string,loading:any,setLoading:any}){
 
 
     const [image, setImage]=useState<File>()
@@ -129,6 +130,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
           // Listen for state changes, errors, and completion of the upload.
           uploadTask.on('state_changed',
             (snapshot) => {
+              setLoading(true)
               // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
               const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               console.log('Upload is ' + progress + '% done');
@@ -164,6 +166,10 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 setDownload(downloadURL)
                 console.log('File available at', downloadURL);
+                const res=  axios.post("https://healthcare-app-patients-app.vercel.app/api/report",{
+                  report: download,
+                  id
+               }).then(e=>setLoading(false))
               });
             }
           );
@@ -187,11 +193,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
         </label>
            <button className="w-max px-3 rounded-full h-6 bg-green-300" disabled={statusInfo==="Pending" ||statusInfo==="Failure" }  onClick={async()=>{
             imageUploader()
-            const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/report",{
-                 report: download,
-                 id
-              })
-              console.log(res)
+           
            }}>send</button></div>
         <div> <a href={pres}><button  className="w-24 bg-indigo-200 rounded-r-full flex items-center justify-center" disabled={statusInfo==="Pending" ||statusInfo==="Failure" } >📝view</button></a></div>
            <div className="w-max px-3  text-center"><a href={meet} ><button  className="w-24 bg-indigo-200 rounded-r-full flex items-center justify-center" disabled={statusInfo==="Pending" ||statusInfo==="Failure" } ><FcGoogle size={20}></FcGoogle> Get In</button></a></div>
@@ -258,11 +260,13 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo}:{doctor:st
     </div>
      <div className="flex items-center justify-center">
     <button className="h-12 w-32 rounded-sm bg-green-500 font-semibold" onClick={async()=>{
+      setLoading(true)
      const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/review",{
       id,
       money,
       ease
      })
+     setLoading(false)
      console.log(res.data)
     }}>Sumbit</button>
     </div>

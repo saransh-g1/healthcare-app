@@ -6,6 +6,7 @@ import { useEffect,useState } from "react";
 import { useRouter } from "next/navigation";
 import storage from "@/lib/firebaseconfig";
 import axios from "axios"
+import { Loading } from "@/components/loader/loader";
 interface appoint{
     id        :  string,
     Purpose   :  string,
@@ -30,6 +31,8 @@ interface appoint{
   }
   const URL=process.env.NEXT_PUBLIC_NEXTAUTH_URL_docs || "http://localhost:3001"
 export default function Sessions(){
+  const [loading,setLoading]=useState<boolean>(false)
+
     const [data,setData]=useState<appoint[]>()
     const [filter,setfilter]=useState("")
     const date=new Date()
@@ -84,18 +87,20 @@ export default function Sessions(){
          {data?.filter((e:any)=>{
           return filter.toLowerCase()===""? e : e.patient.name.toLowerCase().includes(filter)
          }).map((e:any)=>{
-           return <Card key={e.id} id={Number(e.id)} patient={e.patient.name} time={e.time} status={e.Status} report={e.patientReport}/>
+           return <Card key={e.id} id={Number(e.id)} patient={e.patient.name} time={e.time} status={e.Status} report={e.patientReport} loading={loading} setLoading={setLoading}/>
 })}
+    <Loading loading={loading}></Loading>
     </div>
             </div>
     )
 }
 
-function Card({patient,time,status,id,report}:{patient:string,time:string,status:string,id:number,report:string}){
+function Card({patient,time,status,id,report,loading,setLoading}:{patient:string,time:string,status:string,id:number,report:string,loading:any,setLoading:any}){
   const [color,setColor]=useState("yellow")
   const [image, setImage]=useState<File>()
   const [download,setDownload]=useState<string | null>()
   const [meetlink, setMeettlink]=useState<string | null>()
+
   useEffect(()=>{
       if(status==="Success"){
         setColor("indigo")
@@ -121,6 +126,7 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
       // Listen for state changes, errors, and completion of the upload.
       uploadTask.on('state_changed',
         (snapshot) => {
+          setLoading(true)
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
@@ -156,6 +162,12 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
           // Upload completed successfully, now we can get the download URL
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setDownload(downloadURL)
+            const res=  axios.post(`${URL}/api/patients/prescription`,{
+              prescription: downloadURL,
+              id
+           }).then((res)=>{
+            setLoading(false)
+           })
             console.log('File available at', downloadURL);
           });
         }
@@ -175,20 +187,19 @@ function Card({patient,time,status,id,report}:{patient:string,time:string,status
         <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} disabled={ status==="Failure" || status==="Pending"} />
         </label>
            <button className={`w-max px-3 rounded-full h-6 bg-${color}-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
+            
             imageUploader()
-            const res= await axios.post(`${URL}/api/patients/prescription`,{
-                 prescription: download,
-                 id
-              })
-              console.log(res)
+          
            }}>send</button></div>
         <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
            <div className="w-max px-3"><input className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-${color}-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
+            setLoading(true)
             const res= await axios.post(`${URL}/api/patients/meetLink`,{
                  meetlink,
                  id
               })
-              console.log(res)
+              setLoading(false)
+
            }}>send 👩🏻‍⚕️</button></div>
            <div className="w-max px-3">{time}:00 PM</div>
         <div>

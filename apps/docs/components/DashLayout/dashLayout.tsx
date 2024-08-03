@@ -9,13 +9,27 @@ import { FcVoicePresentation } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import "./global.css"
 import { useSession } from "next-auth/react";
-
+import { Backdrop } from '@mui/material';
+import {CircularProgress} from "@mui/material";
+import { useState } from "react";
+import { Loading } from "../loader/loader";
 export default function DashLayout(){
+    const [loading,setLoading]=useState(false)
+
     const router= useRouter();
 
     const session=useSession()
     console.log(session)
+    
+    function handleClose(){
+        setLoading(false)
+      }
+  
+      function handleOpen(){
+          setLoading(true)
+      }
     return(
+
         <div className="w-full h-screen  border-r">
             <div className="flex flex-col items-center justify-center mt-12 border-b-2 ">
                 <div className="flex justify-between items-center ">
@@ -30,18 +44,20 @@ export default function DashLayout(){
                      router.push("/");  
                       }}> Log Out</button>
             </div>
+<Loading loading={loading}></Loading>
+           
+
         <div className="flex flex-col justify-center items-center">
 
             
-                <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={(e)=>{e.preventDefault();
-                    document.getElementById("main")!.classList.add("page-transition");
-                    console.log(document.getElementById("main")!.classList)
-                    new Promise(resolve=>{setTimeout(resolve,1000)});
-
+                <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={async(e)=>{
+                    handleOpen()
+                   await new Promise(resolve=>{setTimeout(resolve,1000)});
                     router.push("/doctor")
-                    new Promise(resolve=>{setTimeout(resolve,1000)});
+                    handleClose()
 
-                    document.getElementById("main")!.classList.remove("page-transition");
+
+                 
 
                     }}>
                     <div className="flex justify-start items-center w-40">
@@ -50,7 +66,7 @@ export default function DashLayout(){
                 </div>
                 </button>
 
-                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={()=>{router.push("/doctor/patients")}} >
+                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={async()=>{handleOpen(); await new Promise(e=>setTimeout(e,1000)); router.push("/doctor/patients"); handleClose() }} >
                  <div className="flex justify-start items-center w-40">
 
                 <FaUserDoctor />
@@ -59,7 +75,7 @@ export default function DashLayout(){
                 </button>
 
                  
-                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={()=>{router.push("/doctor/appointments")}} >
+                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={async()=>{handleOpen(); await new Promise(e=>setTimeout(e,1000)); router.push("/doctor/appointments"); handleClose()}} >
                  <div className="flex justify-start items-center w-40">
 
                 <IoBookmarkSharp ></IoBookmarkSharp>
@@ -67,7 +83,7 @@ export default function DashLayout(){
                 </div>
                 </button>
 
-                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400 " onClick={()=>{router.push("/doctor/settings")}}>
+                 <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400 " onClick={async()=>{handleOpen(); await new Promise(e=>setTimeout(e,1000)); router.push("/doctor/settings"); handleClose()}}>
                  <div className="flex justify-start items-center w-40">
 
                 < IoMdSettings />

@@ -38,6 +38,7 @@ interface doc{
 
 export default function Sess(){
   const [data,setData]=useState<doc | undefined>()
+  const [loading,setLoading]=useState<boolean>(false)
   let count=0;
    useEffect(()=>{
     axios.get(`https://healthcare-app-doctors-app.vercel.app/api/appointments`)
