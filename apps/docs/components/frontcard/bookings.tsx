@@ -2,19 +2,23 @@ import {prisma}  from "@repo/db/client"
 import { getServerSession } from "next-auth"
 import { NEXT_AUTH_CONFIG } from "@/lib/auth";
 async function allappointments(){
-   const id=await getUser()
-    const appoint=prisma.appointment.findMany({
-        where:{
-            doctorId: Number(id)
-        },
-        orderBy:{
-            date: "asc"
-        },
-        include:{
-            patient:true
-        }
-    })
-    return appoint
+    const date=new Date()
+    const id=await getUser()
+     var appoint=await prisma.appointment.findMany({
+         where:{
+             userId: Number(id),
+             Status: "Success"
+         },
+         orderBy:{
+             date: "asc"
+         },
+         include:{
+             doctor:true
+         }
+     })
+     const newAppoint=appoint.filter((e)=>(Number(e.date)<date.getDate()))
+      appoint=newAppoint
+     return appoint
 }
 async function getUser() {
     const session = await getServerSession(NEXT_AUTH_CONFIG);
