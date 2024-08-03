@@ -189,7 +189,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo,loading,set
           <div className="w-max px-4">{doctor}</div>
           <div className="flex justify-around items-center"> 
         <label className="w-max px-3 rounded-full h-6 bg-indigo-200 mx-2 "  >Choose
-        <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)}  disabled={statusInfo==="Pending" ||statusInfo==="Failure" }/>
+        <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)}  disabled={statusInfo==="Pending" ||statusInfo==="Failure" }/>
         </label>
            <button className="w-max px-3 rounded-full h-6 bg-green-300" disabled={statusInfo==="Pending" ||statusInfo==="Failure" }  onClick={async()=>{
             imageUploader()

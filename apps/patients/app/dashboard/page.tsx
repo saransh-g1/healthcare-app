@@ -24,7 +24,7 @@ return(
      <p className="mt-4">Don't have any experiences with appointments. Join us we will provide you every bits of information to get your meeting scheduled. Feel free to reach us at help sectiojn for any other query.</p>
      <p className="mt-4 font-bold text-3xl text-white">Search for one</p>
      <div className="flex mt-4">
-        <input placeholder="Type your doctor's name" className="outline-none rounded-lg w-1/2 h-10 p-1 "></input>
+        <input required placeholder="Type your doctor's name" className="outline-none rounded-lg w-1/2 h-10 p-1 "></input>
         <button className="w-24 font-semibold h-10 text-white bg-blue-500 ml-2 rounded-lg ">Search</button>
      </div>
     </div>

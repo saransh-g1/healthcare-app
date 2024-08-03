@@ -31,15 +31,15 @@ export default function Signup(){
                 </div>
                 <div className=" my-5">
                     <p className="text-lg">Name:</p>
-                    <input className="border w-64 rounded-md h-8 p-1 outline-none" placeholder="sara" type="email" onChange={(e:any)=>{setName(e.target.value)}}></input>
+                    <input required className="border w-64 rounded-md h-8 p-1 outline-none" placeholder="sara" type="email" onChange={(e:any)=>{setName(e.target.value)}}></input>
                 </div>
                 <div className=" mt-2 my-5">
                     <p className="text-lg">Email:</p>
-                    <input className="border w-64 rounded-md h-8 p-1 outline-none" placeholder="abc@gmail.com" type="email" onChange={(e:any)=>{setEmail(e.target.value)}}></input>
+                    <input required className="border w-64 rounded-md h-8 p-1 outline-none" placeholder="abc@gmail.com" type="email" onChange={(e:any)=>{setEmail(e.target.value)}}></input>
                 </div>
                 <div className=" mb-5 mt-2">
                     <p className="text-lg">password:</p>
-                    <input className="border w-64  rounded-md h-8 p-1 outline-none" placeholder="asbuhuo" type="password" onChange={(e:any)=>{setPass(e.target.value)}}></input>
+                    <input required className="border w-64  rounded-md h-8 p-1 outline-none" placeholder="asbuhuo" type="password" onChange={(e:any)=>{setPass(e.target.value)}}></input>
                 </div>
               <button className="bg-blue-500 h-10 w-64 font-bold rounded-lg my-5 text-white border border-gray-400" onClick={async()=>{
                     const res= await signIn("credentials",{

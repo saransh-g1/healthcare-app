@@ -110,29 +110,29 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
 <div className="flex justify-center my-5 ">
 <div className="mx-6">
             <p>Name of patient</p>
-            <input className="rounded-lg w-72 p-1 outline-none" placeholder="abc" onChange={(e)=>{setName(e.target.value)}}></input>
+            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="abc" onChange={(e)=>{setName(e.target.value)}}></input>
             </div>
 
             <div className="mx-6">
             <p>email</p>
-            <input className="rounded-lg w-72 p-1 outline-none" placeholder="abc@gmail.com" onChange={(e)=>{setEmail(e.target.value)}}></input>
+            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="abc@gmail.com" onChange={(e)=>{setEmail(e.target.value)}}></input>
             </div>
 </div>
 <div className="flex justify-center my-5 ">
 <div className="mx-6">
             <p>address</p>
-            <input className="rounded-lg w-72 p-1 outline-none" placeholder="xya location" onChange={(e)=>{setAddress(e.target.value)}}></input>
+            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="xya location" onChange={(e)=>{setAddress(e.target.value)}}></input>
             </div>
 
             <div className="mx-6">
             <p>phone number</p>
-            <input className="rounded-lg w-72 p-1 outline-none" placeholder="phone Number" onChange={(e)=>{setNumber(e.target.value)}}></input>
+            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="phone Number" onChange={(e)=>{setNumber(e.target.value)}}></input>
             </div>
 </div>
 <div className="flex justify-center my-5">
 <div className="mx-6">
             <p>Purpose</p>
-            <input className="rounded-lg w-96 p-1 outline-none" placeholder="xyz problem" onChange={(e)=>{setPurpose(e.target.value)}}></input>
+            <input required className="rounded-lg w-96 p-1 outline-none" placeholder="xyz problem" onChange={(e)=>{setPurpose(e.target.value)}}></input>
             </div>
 </div>
  

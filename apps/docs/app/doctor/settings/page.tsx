@@ -207,7 +207,7 @@ const imageHandler=(files:any)=>{
        <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-center">
        <img src={preview} className="rounded-full h-80 w-80 border-2 border-orange-400 bg-white"/>
        <label className="bg-red-700 text-white h-10 w-max px-4 flex items-center justify-center rounded-lg mt-10">Upload Image
-   <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
+   <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
 </label>
 
         </div>
@@ -223,11 +223,11 @@ const imageHandler=(files:any)=>{
             <div className="flex my-2 ">
             <div className="mx-3">
             <p>offline fees</p>
-            <input className="rounded-lg w-40 p-1 outline-none" placeholder="100" onChange={(e)=>{setOffline(e.target.value)}}></input>
+            <input required className="rounded-lg w-40 p-1 outline-none" placeholder="100" onChange={(e)=>{setOffline(e.target.value)}}></input>
             </div>
             <div className="mx-3">
             <p>online fees</p>
-            <input className="rounded-lg w-40 p-1 outline-none" placeholder="200"  onChange={(e)=>{setOnline(e.target.value)}}></input>
+            <input required className="rounded-lg w-40 p-1 outline-none" placeholder="200"  onChange={(e)=>{setOnline(e.target.value)}}></input>
             </div>
             </div>
 
@@ -238,7 +238,7 @@ const imageHandler=(files:any)=>{
 
             <div className="ml-3">
             <p>Location</p>
-            <input className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(locationByMap)}} value={locationByMap}></input>
+            <input required className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(locationByMap)}} value={locationByMap}></input>
             </div>
 
             <div className="mt-5">
@@ -475,11 +475,11 @@ function Card({t1,t2,p1,p2,onc1,onc2}:{t1:string,t2:string,p2:string,p1:string,o
       <div className="flex my-2  ">
             <div className="mx-3">
             <p>{t1}</p>
-            <input className="rounded-lg w-56 p-1 outline-none" placeholder={p1} onChange={onc1}></input>
+            <input required className="rounded-lg w-56 p-1 outline-none" placeholder={p1} onChange={onc1}></input>
             </div>
             <div className="mx-3">
             <p>{t2}</p>
-            <input className="rounded-lg w-56 p-1 outline-none" placeholder={p2} onChange={onc2}></input>
+            <input required className="rounded-lg w-56 p-1 outline-none" placeholder={p2} onChange={onc2}></input>
             </div>
             </div>
    )

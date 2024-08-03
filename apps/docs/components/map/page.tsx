@@ -52,7 +52,7 @@ export default function Map() {
       id="map"
     className="w-full h-3/4"
     >
-         <input
+         <input required
         style={{
             width: "300px",
             position: "absolute",

@@ -70,7 +70,7 @@ export default function Sessions(){
 
 
       <div className="border rounded-lg h-10 mx-3 mt-2 flex items-center justify-center">
-          <input className="outline-none rounded-md w-96 h-10 border-2 p-1 mx-4" placeholder="search by patients name" onChange={(e)=>{setfilter(e.target.value)}}></input>
+          <input required className="outline-none rounded-md w-96 h-10 border-2 p-1 mx-4" placeholder="search by patients name" onChange={(e)=>{setfilter(e.target.value)}}></input>
           <button className="bg-blue-400 rounded-md text-white w-24 h-8">Search</button>
       </div>
 
@@ -183,16 +183,16 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
         <div className="h-10 mx-3 border  flex items-center *:flex *:items-center *:justify-center *:border-r-2 *:h-full flex justify-between *:w-1/6 ">
           <div className="w-max px-4">{patient}</div>
         <div className="flex justify-around items-center"> 
-        <label className={`w-max px-3 rounded-full h-6 bg-${color}-200 mx-2 `} >📝Choose
-        <input id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} disabled={ status==="Failure" || status==="Pending"} />
+        <label className={`w-max px-3 rounded-full h-6 bg-indigo-200 mx-2 `} >📝Choose
+        <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} disabled={ status==="Failure" || status==="Pending"} />
         </label>
-           <button className={`w-max px-3 rounded-full h-6 bg-${color}-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
+           <button className={`w-max px-3 rounded-full h-6 bg-indigo-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
             
             imageUploader()
           
            }}>send</button></div>
         <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
-           <div className="w-max px-3"><input className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-${color}-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
+           <div className="w-max px-3"><input required className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-indigo-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
             setLoading(true)
             const res= await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/patients/meetLink`,{
                  meetlink,
@@ -204,7 +204,7 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
            <div className="w-max px-3">{time}:00 PM</div>
         <div>
           
-           <button className={`w-max px-3 rounded-full h-6 bg-${color}-300 text-${color}-800 `}>{status}</button>
+           <button className={`w-max px-3 rounded-full h-6 bg-green-300 `}>{status}</button>
                                                      
          </div>
         </div>
