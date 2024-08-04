@@ -39,6 +39,7 @@ interface doc{
 export default function Sess(){
   const [data,setData]=useState<doc | undefined>()
   const [loading,setLoading]=useState<boolean>(false)
+  const[caller,setCaller]=useState(true)
   let count=0;
    useEffect(()=>{
     axios.get(`https://healthcare-app-doctors-app.vercel.app/api/appointments`)
@@ -48,7 +49,7 @@ export default function Sess(){
         console.log(data)
     })
 
-   },[])
+   },[caller])
 
    const date=new Date()
    return(
@@ -77,7 +78,7 @@ export default function Sess(){
 {data?.appoint?.map((e:any)=>{ 
   if(e.Status==="Pending"){
     count=1;
-  return <Sessions key={e.id} purpose={e.Purpose} appointmentNum={e.id.toString()} PatientName={data.name} time={e.time} day={e.date} id={e.id}></Sessions>}
+  return <Sessions key={e.id} purpose={e.Purpose} appointmentNum={e.id.toString()} PatientName={data.name} time={e.time} day={e.date} id={e.id} setCaller={setCaller}></Sessions>}
 })}
 {count===0? <div className="h-72 w-full flex items-center justify-center"><p>None of your meetings are pending</p></div>: <p></p> }
     </div>
@@ -85,7 +86,7 @@ export default function Sess(){
 }
 
 
- function Sessions({purpose,appointmentNum,PatientName,time,day,id}:{purpose:string,appointmentNum:string,PatientName:string,time:string,day:string,id:number}){
+ function Sessions({purpose,appointmentNum,PatientName,time,day,id,setCaller}:{purpose:string,appointmentNum:string,PatientName:string,time:string,day:string,id:number,setCaller:any}){
    
   const date=new Date()
 
@@ -112,12 +113,15 @@ export default function Sess(){
             id,
            })
            console.log(res)
+           setCaller(true)
         }}>Accept Booking</button>
         <button className="bg-red-400 ml-3  text-white rounded-lg h-10 w-96 my-4 text-center"  onClick={async()=>{
            const res=await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/appointments/reject`,{
             id,
            })
            console.log(res)
+           setCaller(true)
+
         }}>Reject</button>
 
         </div>

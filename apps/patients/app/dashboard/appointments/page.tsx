@@ -27,6 +27,7 @@ interface appoint{
 
 export default function Sess(){
   const [data,setData]=useState<patient | undefined>()
+  const[caller,setCaller]=useState(true)
   const router=useRouter()
   let count=0;
    useEffect(()=>{
@@ -37,7 +38,7 @@ export default function Sess(){
         console.log(data)
     })
 
-   },[])
+   },[caller])
 
    const date=new Date()
    return(
@@ -65,14 +66,14 @@ export default function Sess(){
 </div>
 {data?.appoint?.map((e)=>{ if(e.Status==="Pending"){
   count=1
-  return <Sessions key={e.id} id={e.id} purpose={e.Purpose} appointmentNum={e.id.toString()} PatientName={data.name} time={e.time} day={e.date} ></Sessions>}})}
+  return <Sessions key={e.id} id={e.id} purpose={e.Purpose} appointmentNum={e.id.toString()} PatientName={data.name} time={e.time} day={e.date} setCaller={setCaller}></Sessions>}})}
   {count===0? <div className="h-72 w-full flex items-center justify-center"><p>None of your meetings are pending</p></div>: <p></p> }
     </div>
    )
 }
 
 
- function Sessions({purpose,appointmentNum,PatientName,time,day,id}:{purpose:string,appointmentNum:string,PatientName:string,time:string,day:string,id:string}){
+ function Sessions({purpose,appointmentNum,PatientName,time,day,id,setCaller}:{purpose:string,appointmentNum:string,PatientName:string,time:string,day:string,id:string,setCaller:any}){
    
   const date=new Date()
 
@@ -98,6 +99,7 @@ export default function Sess(){
             id,
            })
            console.log(res)
+           setCaller(true)
         }}>Cancel Booking</button>
         </div>
       </div>
