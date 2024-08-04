@@ -6,7 +6,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import storage from "@/lib/firebaseconfig";
 import { mappls, mappls_plugin } from "mappls-web-maps";
 import { useEffect, useRef, useState,useLayoutEffect } from "react";
-
+import Link from "next/link";
 const mapplsClassObject = new mappls();
 const mapplsPluginObject = new mappls_plugin();
 const UR=process.env.NEXTAUTH_URL_docs || "http://localhost:3001"
@@ -76,15 +76,15 @@ const[colort19,setColort19]=useState("orange")
 const[colort20,setColort20]=useState("orange")
 const[colort21,setColort21]=useState("orange")
 
-useEffect(()=>{
-console.log(days)
-},[s,m,t,w,th,f,sa])
+// useEffect(()=>{
+// console.log(days)
+// },[s,m,t,w,th,f,sa])
 
 
-useEffect(()=>{
-  console.log(time)
+// useEffect(()=>{
+//   console.log(time)
 
-},[t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21])
+// },[t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21])
 
 const imageHandler=(files:any)=>{
   if(files && files[0].size<1000000){
@@ -175,7 +175,7 @@ const imageHandler=(files:any)=>{
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_map)
-    mapplsClassObject.initialize("05daa3f5-906b-4c25-b37b-78e3f972ddf5", loadObject, () => {
+    mapplsClassObject.initialize("6030d4d9-f6de-4b97-ae4c-79baa2da8238", loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
@@ -203,13 +203,18 @@ const imageHandler=(files:any)=>{
  return(
   <div>
     <div  className="flex w-full h-max relative">
-       
-       <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-center">
+      
+       <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-start">
+       <div className="flex flex-col items-center justify-start">
+        <p className="text-4xl font-bold text-white my-2">Welcoming you!</p>
+        <p className="text-xl text-orange-600 my-2 underline">About you</p>
+       </div>
+       <div className="flex flex-col items-center justify-center h-full">
        <img src={preview} className="rounded-full h-80 w-80 border-2 border-orange-400 bg-white"/>
        <label className="bg-red-700 text-white h-10 w-max px-4 flex items-center justify-center rounded-lg mt-10">Upload Image
    <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
 </label>
-
+</div>
         </div>
         <div className="bg-blue-200 py-5 text-blue-700 font-semibold  flex flex-col items-center justify-start w-3/5">
          

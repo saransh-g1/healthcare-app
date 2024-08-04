@@ -37,7 +37,7 @@ export default async function Booking(){
                 <p className="text-lg font-semibold border-b-2 border-blue-500 w-32 ml-1">Time</p>
 
             </div>
-           {appointments? <div className="flex items-center justify-center w-full h-96"><p className="text-center">no upcoming meets</p></div>:appointments.map((e:any)=><Card key={e.id} id={e.id} purpose={e.Purpose} doctorName={e.patient.name} time={e.time}/>)} 
+           {appointments? <div className="flex items-center justify-center w-full h-64"><p className="text-center">no upcoming meets</p></div>:appointments.map((e:any)=><Card key={e.id} id={e.id} purpose={e.Purpose} doctorName={e.patient.name} time={e.time}/>)} 
          
             </div>
         </div>

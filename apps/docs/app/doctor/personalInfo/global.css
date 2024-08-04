@@ -1,0 +1,14 @@
+#glower{
+    background-image: radial-gradient(ellipse at 90% -5%, rgb(238, 141, 66) 0%, transparent 20%);
+
+}
+
+#glower2{
+    background-image: radial-gradient(ellipse at 0% 90%, rgb(238, 141, 66) 0%, transparent 60%);
+
+}
+
+#glower3{
+    background-image: radial-gradient(ellipse at 90% 50%, rgb(238, 141, 66) 0%, transparent 50%);
+
+}
