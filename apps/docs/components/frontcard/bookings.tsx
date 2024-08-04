@@ -6,7 +6,7 @@ async function allappointments(){
     const id=await getUser()
      var appoint=await prisma.appointment.findMany({
          where:{
-             userId: Number(id),
+             doctorId: Number(id),
              Status: "Success"
          },
          orderBy:{
@@ -16,8 +16,8 @@ async function allappointments(){
              doctor:true
          }
      })
-     const newAppoint=appoint.filter((e)=>(Number(e.date)<date.getDate()))
-      appoint=newAppoint
+  var newAppoint=appoint.filter((e)=>Number(e.date)>=date.getDate())
+  appoint=newAppoint
      return appoint
 }
 async function getUser() {
@@ -25,7 +25,8 @@ async function getUser() {
     return session.user.id;
   }
 export default async function Booking(){
-    const appointments:any=await allappointments()
+    const appointments=await allappointments()
+    console.log(appointments)
     return(
         <div className="">
             <p className="text-xl font-semibold"> your upcoming bookings</p>
@@ -37,7 +38,7 @@ export default async function Booking(){
                 <p className="text-lg font-semibold border-b-2 border-blue-500 w-32 ml-1">Time</p>
 
             </div>
-           {appointments? <div className="flex items-center justify-center w-full h-64"><p className="text-center">no upcoming meets</p></div>:appointments.map((e:any)=><Card key={e.id} id={e.id} purpose={e.Purpose} doctorName={e.patient.name} time={e.time}/>)} 
+           { appointments.map((e:any)=><Card key={e.id} id={e.id} purpose={e.Purpose} doctorName={e.doctor.name} time={e.time}/>)} 
          
             </div>
         </div>

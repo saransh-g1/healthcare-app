@@ -142,7 +142,7 @@ const imageHandler=(files:any)=>{
           console.log('File available at', downloadURL);
          axios.post(`https://healthcare-app-doctors-app.vercel.app/api/doctor`,{
             image:downloadURL, 
-            address,
+            address:locationByMap,
             phoneNumber,
             age,
             clinic,
