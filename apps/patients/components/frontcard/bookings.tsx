@@ -16,7 +16,7 @@ async function allappointments(){
             doctor:true
         }
     })
-    const newAppoint=appoint.filter((e)=>(Number(e.date)<date.getDate()))
+    const newAppoint=appoint.filter((e)=>Number(e.date)<date.getDate())
      appoint=newAppoint
     return appoint
 }

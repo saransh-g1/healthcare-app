@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={federant.className}><Providers>{children}</Providers></body>
+      <body className={comic.className}><Providers>{children}</Providers></body>
       
     </html>
   );

@@ -11,11 +11,12 @@ import "./global.css"
 import { useSession } from "next-auth/react";
 import { Backdrop } from '@mui/material';
 import {CircularProgress} from "@mui/material";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Loading } from "../loader/loader";
+import axios from "axios"
 export default function DashLayout(){
     const [loading,setLoading]=useState(false)
-
+    const [noti,setNoti]=useState(0)
     const router= useRouter();
 
     const session=useSession()
@@ -28,6 +29,11 @@ export default function DashLayout(){
       function handleOpen(){
           setLoading(true)
       }
+
+      useLayoutEffect(()=>{
+        axios.get("https://healthcare-app-doctors-app.vercel.app/api/notify")
+        .then(res=>{console.log(res.data.res); setNoti(res.data.res)})
+      })
     return(
 
         <div className="w-full h-screen  border-r">
@@ -76,10 +82,11 @@ export default function DashLayout(){
 
                  
                  <button className="my-2 focus:border-r-4 focus:border-blue-700 flex justify-center items-center w-72 h-8 focus:text-blue-400" onClick={async()=>{handleOpen(); await new Promise(e=>setTimeout(e,1000)); router.push("/doctor/appointments"); handleClose()}} >
-                 <div className="flex justify-start items-center w-40">
+                 <div className="flex justify-start items-center w-40 relative">
 
                 <IoBookmarkSharp ></IoBookmarkSharp>
                 <p className="font-bold ml-2">My appointments</p>
+                {noti===0?<></>:<p className="rounded-full h-5 w-5 bg-red-500 text-white absolute z-10 -left-4 bottom-2 ">9</p>}
                 </div>
                 </button>
 
