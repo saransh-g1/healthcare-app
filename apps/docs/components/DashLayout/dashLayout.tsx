@@ -86,7 +86,7 @@ export default function DashLayout(){
 
                 <IoBookmarkSharp ></IoBookmarkSharp>
                 <p className="font-bold ml-2">My appointments</p>
-                {noti===0?<></>:<p className="rounded-full h-5 w-5 bg-red-500 text-white absolute z-10 -left-4 bottom-2 ">9</p>}
+                {noti===0?<></>:<p className="rounded-full h-5 w-5 bg-red-500 text-white absolute z-10 -left-4 bottom-2 ">{noti}</p>}
                 </div>
                 </button>
 
