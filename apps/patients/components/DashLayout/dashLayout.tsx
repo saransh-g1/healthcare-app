@@ -11,11 +11,14 @@ import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { Backdrop } from '@mui/material';
 import {CircularProgress} from "@mui/material";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
+import axios from "axios"
 
 import "./global.css"
 export default function DashLayout(){
     const [loading,setLoading]=useState(false)
+    const [noti,setNoti]=useState(0)
+
     console.log(loading)
     const router= useRouter();
 
@@ -30,6 +33,11 @@ export default function DashLayout(){
     function handleOpen(){
         setLoading(true)
     }
+    useEffect(()=>{
+      axios.get("https://healthcare-app-patients-app.vercel.app/api/notify")
+      .then(res=>{console.log(res.data.res); setNoti(res.data.res)});
+    })
+
 
     return(
         <div className="w-72 h-screen  border-r">
@@ -83,6 +91,7 @@ export default function DashLayout(){
 
                 <IoBookmarkSharp></IoBookmarkSharp>
                 <p className="font-bold ml-2">My appointments</p>
+                {noti===0?<></>:<p className="rounded-full h-5 w-5 bg-red-500 text-white absolute z-10 -left-4 bottom-2 ">9</p>}
                 </div>
                 </button>
         </div>
