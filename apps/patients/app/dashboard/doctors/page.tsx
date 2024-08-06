@@ -46,10 +46,11 @@ export default function AllDoctor(){
     const [doctors,setDoctors]=useState<Doc[]>()
   
     useEffect(()=>{
-        axios.get("https://healthcare-app-patients-app.vercel.app/api/getDoctors")
-        .then((res:any)=>{
-            console.log(res.data.doctors)
-            setDoctors(res.data.doctors)
+        fetch("http://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache:"no-cache"})
+        .then(async(res:any)=>{
+          const respo=await res.json();
+          console.log(respo)
+          setDoctors(respo.doctors)
         })
     },[])
 

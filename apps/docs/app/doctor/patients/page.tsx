@@ -39,12 +39,11 @@ export default function Sessions(){
     const router=useRouter()
  console.log("https://healthcare-app-doctors-app.vercel.app/"	);
     useEffect(()=>{
-      console.log()
     
-         axios.get(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`)
-         .then(res=>{
-            console.log(res.data)
-            setData(res.data.appointments)
+         fetch(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`,{cache:"no-cache"})
+         .then(async resp=>{
+          const res=await resp.json()
+            setData(res.appointments)
          })
   },[])
 

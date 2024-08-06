@@ -31,8 +31,8 @@ export default function DashLayout(){
       }
 
       useLayoutEffect(()=>{
-        axios.get("https://healthcare-app-doctors-app.vercel.app/api/notify")
-        .then(res=>{console.log(res.data.res); setNoti(res.data.res)})
+        fetch("https://healthcare-app-doctors-app.vercel.app/api/notify",{cache:"no-cache"})
+        .then(async resp=>{ const res=await resp.json(); console.log(res.res); setNoti(res.res)})
       })
     return(
 

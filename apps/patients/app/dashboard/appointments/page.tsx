@@ -31,10 +31,11 @@ export default function Sess(){
   const router=useRouter()
   let count=0;
    useEffect(()=>{
-    axios.get("https://healthcare-app-patients-app.vercel.app/api/book")
-    .then((res)=>{
-        setData(res.data.appointments[0])
-        console.log(res.data.appointments[0])
+    fetch("https://healthcare-app-patients-app.vercel.app/api/book",{cache:"no-cache"})
+    .then(async(resp)=>{
+      const res=await resp.json()
+        setData(res.appointments[0])
+        console.log(res.appointments[0])
         console.log(data)
     })
 
