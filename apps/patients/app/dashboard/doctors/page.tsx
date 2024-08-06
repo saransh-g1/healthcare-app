@@ -46,7 +46,7 @@ export default function AllDoctor(){
     const [doctors,setDoctors]=useState<Doc[]>()
   
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/getDoctors")
+        axios.get("https://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache: 'no-store'})
         .then((res:any)=>{
             console.log(res.data.doctors)
             setDoctors(res.data.doctors)
