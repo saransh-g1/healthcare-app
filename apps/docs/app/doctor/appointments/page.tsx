@@ -42,7 +42,7 @@ export default function Sess(){
   const[caller,setCaller]=useState(true)
   let count=0;
    useEffect(()=>{
-    fetch(`https://healthcare-app-doctors-app.vercel.app/api/appointments`,{cache:"no-cache"})
+    fetch(`https://healthcare-app-doctors-app.vercel.app/api/appointments`,{cache:"no-store"})
     .then(async(resp)=>{
       const res=await resp.json()
         setData(res.appointments[0])

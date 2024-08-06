@@ -46,7 +46,7 @@ export default function AllDoctor(){
     const [doctors,setDoctors]=useState<Doc[]>()
   
     useEffect(()=>{
-        fetch("https://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache:"no-cache"})
+        fetch("https://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache:"no-store"})
         .then(async(res:any)=>{
           const respo=await res.json();
           console.log(respo)

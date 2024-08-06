@@ -31,7 +31,7 @@ export default function Sess(){
   const router=useRouter()
   let count=0;
    useEffect(()=>{
-    fetch("https://healthcare-app-patients-app.vercel.app/api/book",{cache:"no-cache"})
+    fetch("https://healthcare-app-patients-app.vercel.app/api/book",{cache:"no-store"})
     .then(async(resp)=>{
       const res=await resp.json()
         setData(res.appointments[0])

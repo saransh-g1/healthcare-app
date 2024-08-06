@@ -40,7 +40,7 @@ export default function Sessions(){
  console.log("https://healthcare-app-doctors-app.vercel.app/"	);
     useEffect(()=>{
     
-         fetch(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`,{cache:"no-cache"})
+         fetch(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`,{cache:"no-store"})
          .then(async resp=>{
           const res=await resp.json()
             setData(res.appointments)

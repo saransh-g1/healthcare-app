@@ -34,7 +34,7 @@ export default function DashLayout(){
         setLoading(true)
     }
     useEffect(()=>{
-      fetch("https://healthcare-app-patients-app.vercel.app/api/notify",{cache:"no-cache"})
+      fetch("https://healthcare-app-patients-app.vercel.app/api/notify",{cache:"no-store"})
       .then(async resp=>{const res=await resp.json(); console.log(res.res); setNoti(res.res)});
     })
 
