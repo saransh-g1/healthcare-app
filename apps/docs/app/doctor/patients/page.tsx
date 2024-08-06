@@ -39,7 +39,7 @@ export default function Sessions(){
     const router=useRouter()
     useEffect(()=>{
     
-         fetch(`http://healthcare-app-doctors-app.vercel.app/api/getPatient`,{cache:"no-store"})
+         fetch(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`,{cache:"no-store"})
          .then(async resp=>{
           const res=await resp.json()
             setData(res.appointments)
