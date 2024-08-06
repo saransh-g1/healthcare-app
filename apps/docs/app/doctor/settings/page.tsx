@@ -175,7 +175,7 @@ const imageHandler=(files:any)=>{
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_map)
-    mapplsClassObject.initialize("6030d4d9-f6de-4b97-ae4c-79baa2da8238", loadObject, () => {
+    mapplsClassObject.initialize("9b5b3ed6-06f0-4685-8113-25f6496c2bfe", loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {

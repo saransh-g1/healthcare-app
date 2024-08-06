@@ -30,12 +30,12 @@ if(session===null){
       age:body?.age,
       clinic:body?.clinic,
       yearOfExp:body?.exp,
-      specialisation:body?.spec,
+      specialisation:body?.specialisation,
       gender : body?.gender,
-      online : body?.onine,
+      online : body?.online,
       offline:body?.offline,
       days :  body?.days,
-      time :body?.times
+      time :body?.time
     
     }
   })
