@@ -2,7 +2,7 @@
 import { useEffect,useState } from "react";
 import { FaCalendarDays } from "react-icons/fa6";
 import axios from "axios"
-
+import { useRouter } from "next/navigation";
 interface appoint{
   id        :  number,
   Purpose   :  string,
@@ -40,6 +40,7 @@ export default function Sess(){
   const [data,setData]=useState<doc | undefined>()
   const [loading,setLoading]=useState<boolean>(false)
   const[caller,setCaller]=useState(true)
+  const router=useRouter()
   let count=0;
    useEffect(()=>{
     fetch(`https://healthcare-app-doctors-app.vercel.app/api/appointments`,{cache:"no-store"})
@@ -57,7 +58,7 @@ export default function Sess(){
     <div className="w-full px-2" >
     <div className="flex justify-between items-center h-20 w-full" >
       <div className="flex justify-around items-center">
-      <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4">Back</button>
+      <button className="bg-blue-300 text-blue-800 md:h-12 md:w-36 h-8 w-20 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
 <h2 className="text-xl font-bold " >Session</h2>
 </div>
 <div className="flex">
@@ -109,14 +110,14 @@ export default function Sess(){
         <p>Date:- 2024-07-{day}</p>
         <p>Timing:-{time}:00 PM</p>
         </div>
-        <button className="bg-blue-300 text-blue-700 rounded-lg h-10 w-96 my-4 text-center" onClick={async()=>{
+        <button className="bg-blue-300 text-blue-700 rounded-lg h-10 sm:w-96 w-80 my-4 text-center" onClick={async()=>{
            const res=await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/appointments/accept`,{
             id,
            })
            console.log(res)
            setCaller(true)
         }}>Accept Booking</button>
-        <button className="bg-red-400 ml-3  text-white rounded-lg h-10 w-96 my-4 text-center"  onClick={async()=>{
+        <button className="bg-red-400 md:ml-3 text-white rounded-lg h-10 sm:w-96 w-80 my-4 text-center"  onClick={async()=>{
            const res=await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/appointments/reject`,{
             id,
            })

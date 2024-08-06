@@ -7,12 +7,13 @@ import storage from "@/lib/firebaseconfig";
 import { mappls, mappls_plugin } from "mappls-web-maps";
 import { useEffect, useRef, useState,useLayoutEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const mapplsClassObject = new mappls();
 const mapplsPluginObject = new mappls_plugin();
 const UR=process.env.NEXTAUTH_URL_docs || "http://localhost:3001"
 
 export default function(){
-
+const router=useRouter()
  const session=useSession()  
 
    const [image,setImage]=useState<File | null>()
@@ -202,21 +203,22 @@ const imageHandler=(files:any)=>{
 
  return(
   <div>
-    <div  className="flex w-full h-max relative">
+    <div  className="md:flex-row flex flex-col w-full h-max relative">
       
-       <div className="w-2/5 bg-blue-400 flex flex-col items-center justify-start">
+       <div className="md:w-2/5 w-full bg-blue-400 flex flex-col items-center justify-start">
        <div className="flex flex-col items-center justify-start">
+       <button className="bg-red-500 mt-2 text-blue-800 md:hidden h-8 w-20 rounded-xl mx-4 text-white" onClick={()=>{router.back()}}>Back</button>
         <p className="text-4xl font-bold text-white my-2">Welcoming you!</p>
-        <p className="text-xl text-orange-600 my-2 underline">About you</p>
+        <Link href="/doctor/personalInfo" className="text-xl text-orange-600 my-2 underline">About you</Link>
        </div>
        <div className="flex flex-col items-center justify-center h-full">
        <img src={preview} className="rounded-full h-80 w-80 border-2 border-orange-400 bg-white"/>
-       <label className="bg-red-700 text-white h-10 w-max px-4 flex items-center justify-center rounded-lg mt-10">Upload Image
+       <label className="bg-red-700 text-white h-10 w-max px-4 flex items-center justify-center rounded-lg mt-10 mb-2">Upload Image
    <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} />
 </label>
 </div>
         </div>
-        <div className="bg-blue-200 py-5 text-blue-700 font-semibold  flex flex-col items-center justify-start w-3/5">
+        <div className="bg-blue-200 py-5 text-blue-700 font-semibold  flex flex-col items-center justify-start md:w-3/5 w-full">
          
             <p className="mb-3">Update your profile here   {s}</p>
             <Card t1="Mobile Number" t2="age" p1="8109858874" p2="18" onc1={(e:any)=>{setPhone(e.target.value)}} onc2={(e:any)=>{setAge(e.target.value)}}></Card>
@@ -228,22 +230,22 @@ const imageHandler=(files:any)=>{
             <div className="flex my-2 ">
             <div className="mx-3">
             <p>offline fees</p>
-            <input required className="rounded-lg w-40 p-1 outline-none" placeholder="100" onChange={(e)=>{setOffline(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-40 w-36 p-1 outline-none" placeholder="100" onChange={(e)=>{setOffline(e.target.value)}}></input>
             </div>
             <div className="mx-3">
             <p>online fees</p>
-            <input required className="rounded-lg w-40 p-1 outline-none" placeholder="200"  onChange={(e)=>{setOnline(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-40 w-36 p-1 outline-none" placeholder="200"  onChange={(e)=>{setOnline(e.target.value)}}></input>
             </div>
             </div>
 
-            <div id="map" className="z-30 w-full h-96" style={{ padding: "0"}}  >
+            <div id="map" className="z-30 w-full h-96 " style={{ padding: "0"}}  >
       {isMapLoaded && <PlacePickerPlugin map={mapRef.current} setLocationByMap={setLocationByMap}/>}
 
     </div>
 
             <div className="ml-3">
             <p>Location</p>
-            <input required className="rounded-lg  p-1 outline-none" placeholder="---" style={{width:"480px"}}  onChange={(e)=>{setAddress(locationByMap)}} value={locationByMap}></input>
+            <input required className="rounded-lg  p-1 outline-none md:w-72 w-56 " placeholder="---"   onChange={(e)=>{setAddress(locationByMap)}} value={locationByMap}></input>
             </div>
 
             <div className="mt-5">
@@ -477,14 +479,14 @@ const imageHandler=(files:any)=>{
 
 function Card({t1,t2,p1,p2,onc1,onc2}:{t1:string,t2:string,p2:string,p1:string,onc1:any,onc2:any}){
    return(
-      <div className="flex my-2  ">
+      <div className="flex my-2 justify-around">
             <div className="mx-3">
             <p>{t1}</p>
-            <input required className="rounded-lg w-56 p-1 outline-none" placeholder={p1} onChange={onc1}></input>
+            <input required className="rounded-lg md:w-56 w-40 p-1 outline-none" placeholder={p1} onChange={onc1}></input>
             </div>
             <div className="mx-3">
             <p>{t2}</p>
-            <input required className="rounded-lg w-56 p-1 outline-none" placeholder={p2} onChange={onc2}></input>
+            <input required className="rounded-lg md:w-56 p-1 w-40 outline-none" placeholder={p2} onChange={onc2}></input>
             </div>
             </div>
    )

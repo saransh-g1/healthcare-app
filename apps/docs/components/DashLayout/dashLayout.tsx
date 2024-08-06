@@ -36,16 +36,16 @@ export default function DashLayout(){
       })
     return(
 
-        <div className="w-full h-screen  border-r">
+        <div className="w-full h-screen  border-r ">
             <div className="flex flex-col items-center justify-center mt-12 border-b-2 ">
                 <div className="flex justify-between items-center ">
                 <div className="w-16 h-16 rounded-full bg-gray-100 flex justify-center items-center mr-2"><FaUser size={40} color="#5274EA"/></div>
                 <div>
                     <p className="text-2xl font-semibold">{session?.data?.user?.name}</p>
-                    <p className="text-sm ">{session?.data?.user?.email}</p>
+                    <p className="text-sm overflow-hidden">{session?.data?.user?.email}</p>
                 </div>
                 </div>
-                <button className="bg-blue-200 text-blue-700 font-semibold h-8 w-60 rounded-sm my-10" onClick={async ()=>{
+                <button className="bg-blue-200 text-blue-700 font-semibold h-8  md:w-40  xl:w-60 rounded-sm my-10" onClick={async ()=>{
                    const res= await signOut({redirect:false});  
                      router.push("/");  
                       }}> Log Out</button>

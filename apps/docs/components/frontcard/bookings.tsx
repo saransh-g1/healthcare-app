@@ -28,8 +28,8 @@ export default async function Booking(){
     const appointments=await allappointments()
     console.log(appointments)
     return(
-        <div className="">
-            <p className="text-xl font-semibold"> your upcoming bookings</p>
+        <div className="flex flex-col xs:w-max">
+            <p className="text-xl font-semibold "> your upcoming bookings</p>
             <div className="border-2 rounded-xl mt-2">
             <div className="flex text-center ">
                 <p className="text-lg font-semibold border-b-2 border-blue-500 w-32 ml-1">Booking Number</p>
@@ -47,7 +47,7 @@ export default async function Booking(){
 
 function Card({purpose,doctorName,time,id}:{id:number ,purpose:string, doctorName:string, time:string}){
     return(
-        <div className="flex  text-center">
+        <div className="flex  text-center ">
         <p className="text-lg font-bold border-b-2 text-blue-500 w-32 ml-1">{id}</p>
         <p className="text-lg  border-b-2  w-32 ml-1">{purpose}</p>
         <p className="text-lg  border-b-2  w-32 ml-1">{doctorName}</p>

@@ -37,10 +37,9 @@ export default function Sessions(){
     const [filter,setfilter]=useState("")
     const date=new Date()
     const router=useRouter()
- console.log("https://healthcare-app-doctors-app.vercel.app/"	);
     useEffect(()=>{
     
-         fetch(`https://healthcare-app-doctors-app.vercel.app/api/getPatient`,{cache:"no-store"})
+         fetch(`http://localhost:3001/api/getPatient`,{cache:"no-store"})
          .then(async resp=>{
           const res=await resp.json()
             setData(res.appointments)
@@ -52,7 +51,7 @@ export default function Sessions(){
         <div className="w-full">
               <div className="flex justify-between items-center h-20 " >
                 <div className="flex justify-around items-center">
-                <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
+                <button className="bg-blue-300 text-blue-800 md:h-12 md:w-36 h-8 w-20 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
         <h2 className="text-xl font-bold">Session</h2>
         </div>
         <div className="flex">
@@ -73,16 +72,36 @@ export default function Sessions(){
           <button className="bg-blue-400 rounded-md text-white w-24 h-8">Search</button>
       </div>
 
-      <div>
+      <div className="hidden md:block">
     <div className="border-2 mb-2 bg-blue-200 mx-3 rounded-lg mt-5 h-10 flex *:flex *:items-center *:justify-between *:border-r *:w-1/6 *:px-3 *:h-full">
-         <div >Name of Patient <PiCaretUpDownFill/></div>
-         <div >prescription <PiCaretUpDownFill/></div>
-         <div >Report <PiCaretUpDownFill/></div>
-         <div >meet Link <PiCaretUpDownFill/></div>
-         <div >Meeting Time <PiCaretUpDownFill/></div>
-         <div >Status <PiCaretUpDownFill/></div>
-         </div>
+         <div id="cont">Name of Patient <PiCaretUpDownFill/></div>
          
+         <div id="cont">prescription <PiCaretUpDownFill/></div>
+         <div id="cont">Report <PiCaretUpDownFill/></div>
+         <div id="cont">meet Link <PiCaretUpDownFill/></div>
+         <div id="cont">Meeting Time <PiCaretUpDownFill/></div>
+         <div id="cont">Status <PiCaretUpDownFill/></div>
+         </div>
+    
+         
+         {data?.filter((e:any)=>{
+          return filter.toLowerCase()===""? e : e.patient.name.toLowerCase().includes(filter)
+         }).map((e:any)=>{
+           return <Card2 key={e.id} id={Number(e.id)} patient={e.patient.name} time={e.time} status={e.Status} report={e.patientReport} loading={loading} setLoading={setLoading}/>
+})}
+    <Loading loading={loading}></Loading>
+    </div>
+
+    <div className="md:hidden">
+    <div className=" border-2 mb-2 bg-blue-200 mx-3 rounded-lg mt-5 h-10 flex *:flex *:items-center *:justify-between *:border-r *:w-1/6 *:px-3 *:h-full">
+         <div id="cont">Name<PiCaretUpDownFill/></div>
+         
+         <div id="cont">Prescri<PiCaretUpDownFill/></div>
+         <div id="cont">Report <PiCaretUpDownFill/></div>
+         <div id="cont">GMeet<PiCaretUpDownFill/></div>
+         <div id="cont">Time<PiCaretUpDownFill/></div>
+         <div id="cont">Status <PiCaretUpDownFill/></div>
+         </div>
          {data?.filter((e:any)=>{
           return filter.toLowerCase()===""? e : e.patient.name.toLowerCase().includes(filter)
          }).map((e:any)=>{
@@ -90,6 +109,7 @@ export default function Sessions(){
 })}
     <Loading loading={loading}></Loading>
     </div>
+
             </div>
     )
 }
@@ -182,7 +202,124 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
         <div className="h-10 mx-3 border  flex items-center *:flex *:items-center *:justify-center *:border-r-2 *:h-full flex justify-between *:w-1/6 ">
           <div className="w-max px-4">{patient}</div>
         <div className="flex justify-around items-center"> 
-        <label className={`w-max px-3 rounded-full h-6 bg-indigo-200 mx-2 `} >📝Choose
+        <label className={`w-max  rounded-full h-6 bg-indigo-200 mx-2`} >📝
+        <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} disabled={ status==="Failure" || status==="Pending"} />
+        </label>
+           <button className={`w-max rounded-full h-6 bg-indigo-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
+            
+            imageUploader()
+          
+           }}>📩</button></div>
+        <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
+           <div className="w-max flex " style={{flex: "0 1 200px"}}><input required className="md:w-20 ml-1 w-full rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`md:w-16 mr-1 w-6 bg-indigo-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
+            setLoading(true)
+            const res= await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/patients/meetLink`,{
+                 meetlink,
+                 id
+              })
+              setLoading(false)
+
+           }}>▶</button></div>
+           <div className="w-max md:px-3 px-0 text-sm md:text-md">{time}:00 PM</div>
+        <div>
+          
+           <button className={`w-max md:px-3 rounded-full h-6 bg-green-300 px-0 `}>{status}</button>
+                                                     
+         </div>
+        </div>
+    )
+}
+
+
+function Card2({patient,time,status,id,report,loading,setLoading}:{patient:string,time:string,status:string,id:number,report:string,loading:any,setLoading:any}){
+  const [color,setColor]=useState("yellow")
+  const [image, setImage]=useState<File>()
+  const [download,setDownload]=useState<string | null>()
+  const [meetlink, setMeettlink]=useState<string | null>()
+
+  useEffect(()=>{
+      if(status==="Success"){
+        setColor("indigo")
+      }else if(status="Failure"){
+        setColor("gray")
+      }
+  },[])
+
+  const imageHandler=(files:any)=>{
+    if(files && files[0].size<1000000){
+       setImage(files[0])    
+    }else{
+       console.log("too long to handle")
+    }
+   }
+
+   const imageUploader=()=>{
+    if(image){
+      // Upload file and metadata to the object 'images/mountains.jpg'
+      const storageRef = ref(storage, 'prescriptions/' + image?.name);
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          setLoading(true)
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case 'paused':
+              console.log('Upload is paused');
+              break;
+            case 'running':
+              console.log('Upload is running');
+              break;
+          }
+        }, 
+        (error) => {
+
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case 'storage/unauthorized':
+              // User doesn't have permission to access the object
+              break;
+            case 'storage/canceled':
+              // User canceled the upload
+              break;
+      
+            // ...
+      
+            case 'storage/unknown':
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        }, 
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setDownload(downloadURL)
+            const res=  axios.post(`https://healthcare-app-doctors-app.vercel.app/api/patients/prescription`,{
+              prescription: downloadURL,
+              id
+           }).then((res)=>{
+            setLoading(false)
+           })
+            console.log('File available at', downloadURL);
+          });
+        }
+      );
+      
+      
+      }else{
+          console.log("file not found")
+      }
+   }
+   const str="w-max px-3 rounded-full h-6 bg-gray-200 mx-2"
+    return(
+        <div className="h-10 mx-3 border  flex items-center *:flex *:items-center *:justify-center *:border-r-2 *:h-full flex justify-between *:w-1/6 ">
+          <div className="w-max px-4">{patient}</div>
+        <div className="flex justify-around items-center"> 
+        <label className={`w-max px-3 rounded-full h-6 bg-indigo-200 mx-2`} >📝Choose
         <input required id="upload" type="file" className="hidden" onChange={(e)=>imageHandler(e.target.files)} disabled={ status==="Failure" || status==="Pending"} />
         </label>
            <button className={`w-max px-3 rounded-full h-6 bg-indigo-300`} disabled={ status==="Failure" || status==="Pending"}  onClick={async()=>{
@@ -191,7 +328,7 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
           
            }}>send</button></div>
         <div>  <a className={str} href={report}><button disabled={ status==="Failure" || status==="Pending"} >view</button></a></div>
-           <div className="w-max px-3"><input required className="w-20 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`w-16 bg-indigo-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
+           <div className="w-max px-3 flex flex-col md:flex-row"><input required className="md:w-20 w-5 rounded-l-full outline-none border p-2 h-6" placeholder="link" onChange={(e)=>{setMeettlink(e.target.value)}} disabled={ status==="Failure" || status==="Pending"}></input>< button className={`md:w-16 w-6 bg-indigo-200 rounded-r-full`} disabled={ status==="Failure" || status==="Pending"} onClick={async()=>{
             setLoading(true)
             const res= await axios.post(`https://healthcare-app-doctors-app.vercel.app/api/patients/meetLink`,{
                  meetlink,
@@ -200,10 +337,10 @@ function Card({patient,time,status,id,report,loading,setLoading}:{patient:string
               setLoading(false)
 
            }}>send 👩🏻‍⚕️</button></div>
-           <div className="w-max px-3">{time}:00 PM</div>
+           <div className="w-max md:px-3 px-0 text-sm md:text-md">{time}:00 PM</div>
         <div>
           
-           <button className={`w-max px-3 rounded-full h-6 bg-green-300 `}>{status}</button>
+           <button className={`w-max md:px-3 rounded-full h-6 bg-green-300 px-0 `}>{status}</button>
                                                      
          </div>
         </div>
