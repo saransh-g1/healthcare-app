@@ -1,7 +1,5 @@
-"use client"
 import DoctorCard from "../../../components/DoctorCard/doctorCard"
 import prisma  from "@repo/db/client";
-import {useState, useEffect} from "react"
 import axios from "axios"
 import { FaCalendarDays } from "react-icons/fa6";
 import { IoBookmarkSharp } from "react-icons/io5";
@@ -9,6 +7,8 @@ import { RiDashboardHorizontalFill } from "react-icons/ri";
 import { FaUserDoctor } from "react-icons/fa6";
 import { AiFillSchedule } from "react-icons/ai";
 import Link from "next/link";
+import { getDoctor } from "@/app/actions/getDoctor";
+import Search from "@/components/search/page";
 interface appoint{
     id        :  number,
     Purpose   :  string,
@@ -46,18 +46,11 @@ interface appoint{
 
 
 
-export default function AllDoctor(){
+export default async function AllDoctor(){
    
   const date=new Date()
-
-    const [doctors,setDoctors]=useState<Doc[]>()
+const doctors=await getDoctor()
     
-      fetch("https://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache:"no-store"})
-      .then(async(res:any)=>{
-        const respo=await res.json();
-        console.log(respo)
-        setDoctors(respo.doctors)
-      })
     
 
     
@@ -81,10 +74,6 @@ export default function AllDoctor(){
 <div className="h-12 w-12 bg-slate-100 rounded-lg flex justify-center items-center"><FaCalendarDays size={30}></FaCalendarDays></div> 
 </div>
         </div>
-         <div className="border rounded-lg h-10 mx-3 mt-2 flex items-center justify-center">
-          <input required className="outline-none rounded-md w-96 h-10 border-2 p-1 mx-4" placeholder="search by patients name" onChange={(e)=>{}}></input>
-          <button className="bg-blue-400 rounded-md text-white w-24 h-8">Search</button>
-      </div>
             
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-4 gap-x-4 2xl:gap-x-12">
          {doctors?.map((doctor,index)=>{
