@@ -43,6 +43,7 @@ interface appoint{
     appoint: appoint[]
   }    
 
+  export const dynamic = "force-dynamic";
 
 
 
