@@ -50,7 +50,7 @@ export default async function AllDoctor(){
    
   const date=new Date()
 const doctors=await getDoctor()
-    
+    console.log(doctors)
     
 
     

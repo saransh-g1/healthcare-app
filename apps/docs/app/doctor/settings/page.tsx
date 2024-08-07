@@ -141,7 +141,7 @@ const imageHandler=(files:any)=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setDownload(downloadURL)
           console.log('File available at', downloadURL);
-         axios.post(`https://healthcare-app-doctors-app.vercel.app/api/doctor`,{
+         axios.post(`http://localhost:3001/api/doctor`,{
             image:downloadURL, 
             address:locationByMap,
             phoneNumber,
