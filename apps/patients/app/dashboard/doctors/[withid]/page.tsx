@@ -66,7 +66,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
         <div className="mx-1 h-screen">
         <div className="flex justify-between items-center h-20 w-full" >
         <div className="flex justify-around items-center">
-        <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
+        <button className="bg-blue-300 text-blue-800 md:h-12 md:w-36 h-8 w-20 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
 <h2 className="text-xl font-bold ">Session</h2>
 </div>
 <div className="flex">
@@ -93,7 +93,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
  <p className="text-2xl font-semibold">{data?.specialisation}</p>
  </div>
  <div className="flex h-full ">
-    <div className=" border-r-2 border-black pt-12 w-80 flex flex-col px-2 items-start justify-around">
+    <div className=" border-r-2 border-black pt-12 md:w-80 w-40 flex flex-col px-2 items-start justify-around">
  <div className=" *:text-indigo-600 *:text-xl *:my-3 *:font-semibold">
     
     <p className=" ">✨ ambulance services 🚑</p>
@@ -107,38 +107,38 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
     <div className="text-center">for any help contact us! we are alaways there</div>
     </div>
 <div className="w-full">
-<div className="flex justify-center my-5 ">
-<div className="mx-6">
+<div className="flex justify-center items-center my-5 md:flex-row flex-col w-full">
+<div className="md:mx-6 mx-1">
             <p>Name of patient</p>
-            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="abc" onChange={(e)=>{setName(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-72 w-40 p-1 outline-none" placeholder="abc" onChange={(e)=>{setName(e.target.value)}}></input>
             </div>
 
-            <div className="mx-6">
+            <div className="md:mx-6 mx-1">
             <p>email</p>
-            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="abc@gmail.com" onChange={(e)=>{setEmail(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-72 w-40 p-1 outline-none" placeholder="abc@gmail.com" onChange={(e)=>{setEmail(e.target.value)}}></input>
             </div>
 </div>
-<div className="flex justify-center my-5 ">
-<div className="mx-6">
+<div className="flex justify-center items-center my-5 md:flex-row flex-col w-full">
+<div className="md:mx-6 mx-1">
             <p>address</p>
-            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="xya location" onChange={(e)=>{setAddress(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-72 w-40 p-1 outline-none" placeholder="xya location" onChange={(e)=>{setAddress(e.target.value)}}></input>
             </div>
 
-            <div className="mx-6">
+            <div className="md:mx-6 mx-1">
             <p>phone number</p>
-            <input required className="rounded-lg w-72 p-1 outline-none" placeholder="phone Number" onChange={(e)=>{setNumber(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-72 w-40 p-1 outline-none" placeholder="phone Number" onChange={(e)=>{setNumber(e.target.value)}}></input>
             </div>
 </div>
-<div className="flex justify-center my-5">
-<div className="mx-6">
+<div className="flex justify-center items-center my-5 w-full">
+<div className="md:mx-6 mx-1">
             <p>Purpose</p>
-            <input required className="rounded-lg w-96 p-1 outline-none" placeholder="xyz problem" onChange={(e)=>{setPurpose(e.target.value)}}></input>
+            <input required className="rounded-lg md:w-96 w-44 p-1 outline-none" placeholder="xyz problem" onChange={(e)=>{setPurpose(e.target.value)}}></input>
             </div>
 </div>
  
- <div className="flex justify-around items-center">
+ <div className="flex md:justify-around md:items-center  md:flex-row flex-col w-full">
 <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar shouldDisableDate={isWeekend} onChange={async(value)=>{
+      <DateCalendar  shouldDisableDate={isWeekend} onChange={async(value)=>{
       const res=await axios.post("https://healthcare-app-patients-app.vercel.app/api/getAppointment",{
         day:value.$D.toString()
       })
@@ -149,11 +149,11 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
         const day=getDay
         console.log(day,value)
         setDate(value.$D.toString())
-        }}  disablePast className="rounded-lg my-2"/>
+        }}  disablePast className="rounded-lg my-2 w-60 "/>
     </LocalizationProvider>
 
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-     <TimeClock className="rounded-lg my-2" view={"hours"} onChange={(value)=>{setTime(value.$H.toString()); console.log(value.$H.toString())}}
+     <TimeClock className="rounded-lg my-2 w-60"  view={"hours"} onChange={(value)=>{setTime(value.$H.toString()); console.log(value.$H.toString())}}
       shouldDisableTime={(value, view) =>{
         const timers=data?.time.map((n)=>{
           const num=Number(n)
@@ -166,7 +166,7 @@ const [timeOfSpecificDate, setTimeOfSpec]=useState()
     </LocalizationProvider>
 </div>
 <div className="flex items-center justify-center mb-5">
- <button className="w-72 h-10 bg-blue-500 text-xl font-semibold text-white text-center rounded-lg" onClick={async()=>{
+ <button className="lg:w-72 w-40 h-max py-2 bg-blue-500 text-xl font-semibold text-white text-center rounded-lg" onClick={async()=>{
   console.log(purpose)
  const res=await  axios.post("https://healthcare-app-patients-app.vercel.app/api/book",{
     id: document.location.href.split("/")[5],

@@ -32,8 +32,8 @@ export default function FrontCard({display}:{display:string}){
     return(
         <div className={`w-max ${display}`}>
         
-        <p className="text-xl font-semibold "> Status</p>
-         <div className="flex my-2 ">
+        <p className="text-xl font-semibold mx-1"> Status</p>
+         <div className="sm:flex-row my-2 justify-center flex flex-col items-center">
           <div className="border border-stone-300 h-28 w-72  rounded-lg flex justify-around items-center border">
             <div className="mx-2">
              <p className="text-3xl font-semibold text-blue-500">{appointments()}</p>
@@ -55,7 +55,7 @@ export default function FrontCard({display}:{display:string}){
             </div>
          </div>
         </div>
-        <div className="flex ">
+        <div className="sm:flex-row my-2 justify-center flex flex-col items-center  ">
           <div className="border border-stone-300 h-28 w-72  rounded-lg flex justify-around items-center border">
             <div className="mx-2">
              <p className="text-3xl font-semibold text-blue-500">{getPaient()}</p>

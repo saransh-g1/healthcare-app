@@ -28,7 +28,7 @@ export default async function Booking(){
     const appointments=await allappointments()
     console.log(appointments)
     return(
-        <div className="flex flex-col xs:w-max sm:pt-4 pt-0">
+        <div className="flex flex-col sm:w-max sm:pt-4 pt-0">
             <p className="text-xl font-semibold "> your upcoming bookings</p>
             <div className="border-2 rounded-xl mt-2">
             <div className="flex text-center ">

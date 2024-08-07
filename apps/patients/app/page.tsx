@@ -11,11 +11,9 @@ export default async function Home() {
   const session= await getUser();
   console.log(session)
   return (
-    <div >
     <div className="h-screen">
      
-     <div>JSON.stringify({session?.user?.name})</div>
-     <div className="flex justify-between items-center z-10 mx-10 relative text-white pt-2">
+     <div className="flex justify-between items-center z-10 mx-10 relative text-white pt-2 flex-col sm:flex-row *:my-1">
         <div className="text-xl font-extrabold">tryst | online sol</div>
 
         <div className="flex items-center ">
@@ -33,12 +31,11 @@ export default async function Home() {
       </div>
     </div>
 
-    <div className="text-white relative top-2/3 z-10 text-center">
+    <div className="text-white absolute bottom-0 flex justify-center z-10 text-center">
       <p className="text-sm">A web solution by saransh</p>
     </div>
-     <img  className="w-screen h-full absolute top-0 brightness-50" src="bg01.jpg"></img>
+     <img  className="w-screen h-full absolute top-0 brightness-50 object-cover" src="bg01.jpg"></img>
 
-    </div>
     </div>
   );
 }

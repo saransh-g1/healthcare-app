@@ -1,5 +1,5 @@
 import Link from "next/link"
-export default function DoctorCard({image,name,spec,address,days,did,rating}:{image:string,name:string,spec:string,did:string,address:string,days:string[],rating:number}){
+export default function DoctorCard({image,name,spec,address,days,did,rating,online,offline}:{online:string,offline:string,image:string,name:string,spec:string,did:string,address:string,days:string[],rating:number}){
     return(
         <div className="h-max w-72 border shadow-2xl my-3 rounded-2xl">
             <img src={image} className="w-full h-48 rounded-2xl"></img>
@@ -10,11 +10,16 @@ export default function DoctorCard({image,name,spec,address,days,did,rating}:{im
                 {!Number.isNaN(rating)? <p>✨{rating} Stars</p> : <p>Newbie👩🏻‍⚕️</p>}
                
                 </div>
-                <div className="h-max py-1">
-                    <p>{spec}</p>
+                <div className="h-max py-1 ">
+                    <p className="font-semibold">{spec}</p>
                     <div >
                     <p className="text-sm">{address}</p>
+                    <div className="flex items-center justify-between">
+                           <div className="font-bold text-green-500 flex">online Fees:-<p className="text-black">{online}</p></div>
+                           <div className="font-bold text-green-500 flex">offline Fees:-<p className="text-black">{offline}</p></div>
+                        </div>
                     <div className="flex items-center justify-start h-max my-3">
+
                   {days.map((day,index)=>{return <p key={index} className="bg-blue-200 text-blue-800 h-6 w-6 rounded-full text-center mr-2">{day}</p>})}
                   </div>  
                   <Link className="text-lg font-semibold rounded-2xl bg-blue-600 w-32 my-4 h-10 text-white p-2" href={`/dashboard/doctors/${did}`}>Schedule</Link>

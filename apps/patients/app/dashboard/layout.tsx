@@ -12,8 +12,8 @@ return(
     <html>
       <body  className={comic.className}>
         <div className="flex w-full h-full">
-          <div className="w-1/5"><DashLayout></DashLayout></div>
-        <main className="w-4/5">
+          <div className="w-1/5 md:block  hidden"><DashLayout></DashLayout></div>
+        <main className="md:w-4/5 w-full">
         {children}
         </main>
         </div>

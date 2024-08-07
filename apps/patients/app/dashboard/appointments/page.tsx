@@ -46,7 +46,7 @@ export default function Sess(){
     <div className="w-full px-2" >
     <div className="flex justify-between items-center h-20 w-full" >
       <div className="flex justify-around items-center">
-      <button className="bg-blue-300 text-blue-800 h-12 w-36 rounded-xl mx-4" onClick={()=>{router.back()}}>Back</button>
+      <button className="bg-red-500 mt-2 text-blue-800 md:hidden h-8 w-20 rounded-xl mx-4 text-white" onClick={()=>{router.back()}}>Back</button>
 <h2 className="text-xl font-bold " >Session</h2>
 </div>
 <div className="flex">
@@ -95,7 +95,7 @@ export default function Sess(){
         <p>Date:- 2024-07-{day}</p>
         <p>Timing:-{time}:00 PM</p>
         </div>
-        <button className="bg-blue-300 text-blue-700 rounded-lg h-10 w-96 my-4 text-center"   onClick={async()=>{
+        <button className="bg-red-400 md:ml-3 text-white rounded-lg h-10 sm:w-96 w-80 my-4 text-center"   onClick={async()=>{
            const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/book/cancel",{
             id,
            })
