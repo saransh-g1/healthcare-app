@@ -14,10 +14,10 @@ return(
     <div className="flex justify-between items-center " >
         <Link  href="/dashboard" className="text-xl font-bold mx-2 md:block hidden">Home</Link>
         <div className="md:hidden flex">
-        <Link href="/doctor" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black">  <RiDashboardHorizontalFill /></Link>
-        <Link href="/doctor/patients" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black"><FaUserDoctor /></Link>
-        <Link href="/doctor/appointments" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black "> <AiFillSchedule></AiFillSchedule></Link>
-        <Link href="/doctor/settings" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black">        < IoBookmarkSharp /></Link>
+        <Link href="/dashboard" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black">  <RiDashboardHorizontalFill /></Link>
+        <Link href="/dashboard/doctors" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black"><FaUserDoctor /></Link>
+        <Link href="/dashboard/informations" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black "> <AiFillSchedule></AiFillSchedule></Link>
+        <Link href="/dashboard/appointments" className="text-xl font-bold mx-2 hover:shadow-lg rounded-xl p-2 h-max w-max  text-black">        < IoBookmarkSharp /></Link>
         </div>
         <div className="flex">
             <div className="mr-2" >

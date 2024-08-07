@@ -38,7 +38,7 @@ export default function SignIn(){
                         redirect: false,
                     })
                     console.log(res);
-                    router.push("/doctor")
+                    router.push("/dashboard")
                  }}>Sign In</button>
              </div>
              </div>

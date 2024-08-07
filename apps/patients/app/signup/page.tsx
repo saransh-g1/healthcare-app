@@ -47,7 +47,7 @@ export default function Signup(){
                         page: document.location.href.split('/')[3]
                     })
                     console.log(res);
-                    router.push("/doctor")
+                    router.push("/dashboard")
                  }}>Sign up</button>
                  
              </div>
