@@ -209,6 +209,7 @@ const imageHandler=(files:any)=>{
        <div className="md:w-2/5 w-full bg-blue-400 flex flex-col items-center justify-start">
        <div className="flex flex-col items-center justify-start">
        <button className="bg-red-500 mt-2 text-blue-800 md:hidden h-8 w-20 rounded-xl mx-4 text-white" onClick={()=>{router.back()}}>Back</button>
+       <p className="text-bold text-xl">**All fields have to entered**</p>
         <p className="text-4xl font-bold text-white my-2">Welcoming you!</p>
         <Link href="/doctor/personalInfo" className="text-xl text-orange-600 my-2 underline">About you</Link>
        </div>

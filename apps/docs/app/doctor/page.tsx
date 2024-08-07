@@ -58,7 +58,7 @@ return(
    <FrontCard></FrontCard>
    <Booking></Booking>
    </div> 
-
+ <p>**Complete your profile in settings section to get registered.**</p>
     </div>
 )
 }
