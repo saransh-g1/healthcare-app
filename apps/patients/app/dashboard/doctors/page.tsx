@@ -51,15 +51,16 @@ export default function AllDoctor(){
   const date=new Date()
 
     const [doctors,setDoctors]=useState<Doc[]>()
-  
-    useEffect(()=>{
-        fetch("https://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache:"no-store"})
-        .then(async(res:any)=>{
-          const respo=await res.json();
-          console.log(respo)
-          setDoctors(respo.doctors)
-        })
-    },[])
+    
+      fetch("https://healthcare-app-patients-app.vercel.app/api/getDoctors",{cache:"no-store"})
+      .then(async(res:any)=>{
+        const respo=await res.json();
+        console.log(respo)
+        setDoctors(respo.doctors)
+      })
+    
+
+    
 
     return(
         <div className="flex flex-col justify-center	w-full">
