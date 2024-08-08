@@ -57,7 +57,7 @@ export default function Info(){
     const date=new Date()
    console.log("healthcare-app-patients-app.vercel.app")
     useEffect(()=>{
-         fetch("https://healthcare-app-patients-app.vercel.app/api/getInfo",{cache:"no-store"})
+         fetch("http://localhost:3000/api/getInfo",{cache:"no-store"})
          .then(async resp=>{
           const res=await resp.json()
             console.log(res)
@@ -227,8 +227,8 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo,loading,set
 
         </div>
 
-        <div className="bg-indigo-100 h-max w-max p-10 absolute z-40 top-1/4 left-1/3" style={{display:"none"}} id="reviewForm">
-   <button className="w-10 h-10 text-white bg-red-500 " onClick={()=>{
+        <div className="bg-blue-100 h-max w-max p-10 absolute z-40 top-1/4 left-1/3 shadow-2xl border-2 rounded-lg outline-2 outline-blue-500" style={{display:"none"}} id="reviewForm">
+   <button className="w-10 h-10 text-white bg-red-500 rounded-lg outline outline-violet-100 " onClick={()=>{
     document.getElementById("reviewForm")!.style.display="none"
    }}>X</button>
     <div className="my-6">
@@ -279,7 +279,7 @@ function Card({doctor,time,day,status,clinic,id,meet,pres,statusInfo,loading,set
     </div>
     </div>
      <div className="flex items-center justify-center">
-    <button className="h-12 w-32 rounded-sm bg-green-500 font-semibold" onClick={async()=>{
+    <button className="h-8 w-32 rounded-lg bg-green-400 font-bold text-white text-xl" onClick={async()=>{
       setLoading(true)
      const res= await axios.post("https://healthcare-app-patients-app.vercel.app/api/review",{
       id,
