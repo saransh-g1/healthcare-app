@@ -15,7 +15,8 @@ const comic= Comic_Neue({
 })
 export const metadata: Metadata = {
   title: "Doctor App",
-  icons:["/logo.png"]
+  description:"Welcome!",
+  icons: [{ rel: "icon", url: "/logo.png" }],
 };
 
 export default function RootLayout({

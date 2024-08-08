@@ -78,6 +78,7 @@ const doctors=await getDoctor()
             
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-4 gap-x-4 2xl:gap-x-12">
          {doctors?.map((doctor,index)=>{
+          if(doctor.address!=""){
             let number=0
             let totalRate=0
            const rate=doctor.appoint.map((a)=>{
@@ -91,7 +92,7 @@ const doctors=await getDoctor()
             })
             console.log(rate)
             
-            return <DoctorCard rating={totalRate/(number*2)} key={doctor.id} image={doctor.photo} address={doctor.address} spec={doctor.specialisation} name={doctor.name} days={doctor.days} did={doctor.id.toString()} online={doctor.online} offline={doctor.offline}></DoctorCard>})}
+            return <DoctorCard rating={totalRate/(number*2)} key={doctor.id} image={doctor.photo} address={doctor.address} spec={doctor.specialisation} name={doctor.name} days={doctor.days} did={doctor.id.toString()} online={doctor.online} offline={doctor.offline}></DoctorCard>}})}
 
 
 

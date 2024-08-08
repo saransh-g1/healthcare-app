@@ -20,7 +20,17 @@ export default function DoctorCard({image,name,spec,address,days,did,rating,onli
                         </div>
                     <div className="flex items-center justify-start h-max my-3">
 
-                  {days.map((day,index)=>{return <p key={index} className="bg-blue-200 text-blue-800 h-6 w-6 rounded-full text-center mr-2">{day}</p>})}
+                  {days.map((day,index)=>{
+                    switch(day){
+                        case "0": day="S"; break;
+                        case "1": day="M"; break;
+                        case "2": day="T"; break;
+                        case "3": day="W"; break;
+                        case "4": day="Th"; break;
+                        case "5": day="F"; break;
+                        case "6": day="Sa"; break;
+                    }
+                    return <p key={index} className="bg-blue-200 text-blue-800 h-6 w-6 rounded-full text-center mr-2">{day}</p>})}
                   </div>  
                   <Link className="text-lg font-semibold rounded-2xl bg-blue-600 w-32 my-4 h-10 text-white p-2" href={`/dashboard/doctors/${did}`}>Schedule</Link>
                     </div>
