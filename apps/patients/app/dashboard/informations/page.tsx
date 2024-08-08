@@ -57,7 +57,7 @@ export default function Info(){
     const date=new Date()
    console.log("healthcare-app-patients-app.vercel.app")
     useEffect(()=>{
-         fetch("http://localhost:3000/api/getInfo",{cache:"no-store"})
+         fetch("https://healthcare-app-patients-app.vercel.app/api/getInfo",{cache:"no-store"})
          .then(async resp=>{
           const res=await resp.json()
             console.log(res)
