@@ -76,7 +76,7 @@ const[colort18,setColort18]=useState("orange")
 const[colort19,setColort19]=useState("orange")
 const[colort20,setColort20]=useState("orange")
 const[colort21,setColort21]=useState("orange")
-
+const[id ,setId]=useState("")
 // useEffect(()=>{
 // console.log(days)
 // },[s,m,t,w,th,f,sa])
@@ -176,8 +176,9 @@ const imageHandler=(files:any)=>{
  
 
   useEffect(() => {
+    
     console.log(process.env.NEXT_PUBLIC_map)
-    mapplsClassObject.initialize("85c74108-bb35-4526-80bf-8d00a3cde225", loadObject, () => {
+    mapplsClassObject.initialize('127bcfa5-8b87-46bd-ae08-08f573ddb71a', loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
@@ -202,6 +203,10 @@ const imageHandler=(files:any)=>{
 
 //map picker//
 
+useEffect(()=>{
+
+}
+,[])
  return(
   <div>
     <div  className="md:flex-row flex flex-col w-full h-max relative">
