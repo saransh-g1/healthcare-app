@@ -24,7 +24,7 @@ export default function Map() {
  
 
   useEffect(() => {
-    mapplsClassObject.initialize("430c6389-9fa5-4a79-805d-472251703439", loadObject, () => {
+    mapplsClassObject.initialize("f5fdb5a5-9c3c-47c0-9983-8280e0d50b80", loadObject, () => {
       const newMap = mapplsClassObject.Map({
         id: "map",
         properties: {
